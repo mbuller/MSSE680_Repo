@@ -14,116 +14,12 @@ namespace MSSE680.DAL
     
     public partial class Person
     {
-        /**
-         * Default constructor
-         * 
-         */
         public Person()
         {
             this.Accounts = new HashSet<Account>();
             this.CreditCards = new HashSet<CreditCard>();
         }
-
-        /**
-         * byte Age
-         * String FirstName
-         * String LastName
-         * String Password
-         */
-        public Person(
-                    int PersonId,
-                    byte Age,
-                    String FirstName,
-                    String LastName,
-                    String UserName,
-                    Address Address)
-        {
-
-            this.PersonId = PersonId;
-            this.Age = Age;
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.UserName = UserName;
-            this.Password = "Password1";
-            this.Address = Address;
-        }
-
-
-        /**
-         * byte Age
-         * String FirstName
-         * String LastName
-         * String Password
-         */
-        public Person(
-                    byte Age,
-                    String FirstName,
-                    String LastName,
-                    String UserName,
-                    Address Address)
-        {
-            this.Age = Age;
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.UserName = UserName;
-            this.Password = "Password1";
-            this.Address = Address;
-        }
-
-        /**
-        * byte Age
-        * String FirstName
-        * String LastName
-        * String Password
-        * Address Address
-        */
-        public Person(
-                    byte Age,
-                    String FirstName,
-                    String LastName,
-                    String UserName,
-                    String Password,
-                    Address Address)
-        {
-            this.Age = Age;
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.UserName = UserName;
-            this.Password = Password;
-            this.Address = Address;
-        }
-
-        /**
-         * int PersonId
-         * byte Age
-         * String FirstName
-         * String LastName
-         * String UserName
-         * String Password
-         * Address Address
-         */
-        public Person(
-                    int PersonId,
-                    byte Age,
-                    String FirstName,
-                    String LastName,
-                    String UserName,
-                    String Password,
-                    Address Address)
-        {
-
-            this.PersonId = PersonId;
-            this.Age = Age;
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.UserName = UserName;
-            this.Password = Password;
-            this.Address = Address;
-        }
-
-        /**
-         * Setters getters for Person class
-         */
+    
         public int PersonId { get; set; }
         public byte Age { get; set; }
         public string FirstName { get; set; }
@@ -132,48 +28,9 @@ namespace MSSE680.DAL
         public string Password { get; set; }
         public byte Permissions { get; set; }
         public Nullable<int> Address_AddressId { get; set; }
-
+    
         public virtual ICollection<Account> Accounts { get; set; }
         public virtual Address Address { get; set; }
         public virtual ICollection<CreditCard> CreditCards { get; set; }
-
-        /**
-         * Validate if the instance variables are valid
-         *
-         *  bool - true if instance variables are valid, else false
-         */
-        public bool validate()
-        {
-            if (PersonId < 0)
-            {
-                return false;
-            }
-            if (LastName == null)
-            {
-                return false;
-            }
-            if (FirstName == null)
-            {
-                return false;
-            }
-            if (UserName == null)
-            {
-                return false;
-            }
-            if (Password == null)
-            {
-                return false;
-            }
-            if (Age == 0)
-            {
-                return false;
-            }
-            if (Address.validate() == false)
-            {
-                return false;
-            }
-
-            return true;
-        }
     }
 }

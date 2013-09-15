@@ -14,77 +14,12 @@ namespace MSSE680.DAL
     
     public partial class CreditCard
     {
-        /**
-         * Default constructor
-         * 
-         */
         public CreditCard()
         {
             this.Accounts = new HashSet<Account>();
             this.Transactions = new HashSet<Transaction>();
         }
-
-        /**
-         * int Limit
-         * double Balance
-         * byte CardType = 0 //Physica card
-         *               = 1 //Virtual Card
-         *               = 2 //Physical AND Virtual Card
-         * byte ExpirationMonth
-         * byte ExperationYear
-         * Person CreditCardUser
-         */
-        public CreditCard(
-                    int Limit,
-                    double Balance,
-                    byte CardType,
-                    byte ExpirationMonth,
-                    byte ExpirationYear,
-                    Person CreditCardUser)
-        {
-            this.Limit = Limit;
-            this.Balance = Balance;
-            this.CardType = CardType;
-            this.ExpirationMonth = ExpirationMonth;
-            this.ExpirationYear = ExpirationYear;
-            this.CreditCardUser = CreditCardUser;
-        }
-
-        /**
-        * int CreidtCardId
-        * long CreditCardNumber
-        * int Limit
-        * double Balance
-        * byte CardType = 0 //Physica card
-        *               = 1 //Virtual Card
-        *               = 2 //Physical AND Virtual Card
-        * byte ExpirationMonth
-        * byte ExperationYear
-        * Person CreditCardUser
-        */
-        public CreditCard(
-                    int CreditCardId,
-                    long CreditCardNumber,
-                    int Limit,
-                    double Balance,
-                    byte CardType,
-                    byte ExpirationMonth,
-                    byte ExpirationYear,
-                    Person CreditCardUser)
-        {
-            this.CreditCardId = CreditCardId;
-            this.CreditCardNumber = CreditCardNumber;
-            this.Limit = Limit;
-            this.Balance = Balance;
-            this.CardType = CardType;
-            this.ExpirationMonth = ExpirationMonth;
-            this.ExpirationYear = ExpirationYear;
-            this.CreditCardUser = CreditCardUser;
-        }
-
-        /**
-         * Setters getters for CreditCard class
-         */    
+    
         public int CreditCardId { get; set; }
         public long CreditCardNumber { get; set; }
         public byte CardType { get; set; }
@@ -99,49 +34,5 @@ namespace MSSE680.DAL
         public virtual Account Account { get; set; }
         public virtual Person CreditCardUser { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
-
-        /**
-         * Validate if the instance variables are valid
-         *
-         *  bool - true if instance variables are valid, else false
-         */
-        public bool validate()
-        {
-            if (CreditCardId < 0)
-            {
-                return false;
-            }
-            if (CreditCardNumber == 0)
-            {
-                return false;
-            }
-            if (CardType < 0)
-                 {
-                     return false;
-                 }
-                 if (Limit == 0)
-                 {
-         
-                     return false;
-                 }
-               if (ExpirationMonth < 1)
-                  {
-          
-                      return false;
-                  }
-
-               if (ExpirationYear < 1)
-                        {
-      
-                            return false;
-                        }
-                    
-                 if (CreditCardUser.validate() == false)
-                             {
-                                 return false;
-                             }
-                            
-            return true;
-        }
     }
 }

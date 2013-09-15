@@ -56,6 +56,12 @@
     <Content Include="DAL\Model680.edmx.sql" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\classes\Account.cs" />
+    <Compile Include="DAL\classes\Address.cs" />
+    <Compile Include="DAL\classes\CreditCard.cs" />
+    <Compile Include="DAL\classes\Person.cs" />
+    <Compile Include="DAL\classes\Transaction.cs" />
+    <Compile Include="DAL\repository\Repository.cs" />
     <Compile Include="MSSE680.cs" />
     <Compile Include="DAL\Account.cs">
       <DependentUpon>Model680.tt</DependentUpon>
@@ -94,6 +100,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -103,6 +110,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

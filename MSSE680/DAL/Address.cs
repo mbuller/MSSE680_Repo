@@ -14,59 +14,11 @@ namespace MSSE680.DAL
     
     public partial class Address
     {
-        /**
-         * Default constructor
-         * 
-         */
         public Address()
         {
             this.People = new HashSet<Person>();
         }
-
-        /**
-         * String City
-         * String Street
-         * String State
-         * int ZipCode
-         */
-        public Address(
-                    String City,
-                    String Street,
-                    String State,
-                    int Zipcode)
-        {
-            this.AddressId = AddressId;
-            this.City = City;
-            this.Street = Street;
-            this.State = State;
-            this.Zipcode = Zipcode;
-        }
-
-        /**
-         * int AddressId
-         * String City
-         * String Street
-         * String State
-         * int ZipCode
-         */
-        public Address(
-                    int AddressId,
-                    String City,
-                    String Street,
-                    String State,
-                    int Zipcode)
-        {
-            this.AddressId = AddressId;
-            this.City = City;
-            this.Street = Street;
-            this.State = State;
-            this.Zipcode = Zipcode;
-        }
-
-
-        /**
-         * Setters getters for Address class
-         */    
+    
         public int AddressId { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
@@ -74,36 +26,5 @@ namespace MSSE680.DAL
         public int Zipcode { get; set; }
     
         public virtual ICollection<Person> People { get; set; }
-
-        /**
-         * Validate if the instance variables are valid
-         *
-         * bool - true if instance variables are valid, else false
-         */
-        public bool validate()
-        {
-            if (AddressId < 0)
-            {
-                return false;
-            }
-            if (City == null)
-            {
-                return false;
-            }
-            if (Street == null)
-            {
-                return false;
-            }
-            if (State == null)
-            {
-                return false;
-            }
-            if (Zipcode == 0)
-            {
-                return false;
-            }
-
-            return true;
-        }    
     }
 }
