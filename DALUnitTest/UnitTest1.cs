@@ -58,16 +58,14 @@ namespace DALUnitTest
         {
             var AddressRepo = new DataRepository<Address>();
             Address Address1 = new Address("TestAddressCityRepo1", "111 TestAddressStreetRepo1", "KS", 11111);
-            Address Address2 = new Address("TestAddressCityRepo2", "222 TestAddressStreetRepo2", "KS", 22222);
             AddressRepo.Insert(Address1);
-            AddressRepo.Insert(Address2);
         }
 
         [TestMethod]
         public void testAddressRetrieveAllUsingRepository()
         {
             var AddressRepo = new DataRepository<Address>();
-
+            Address Address1 = new Address("Wichita", "1111 Shocker Drive", "KS", 67111);
             List<Address> myList = AddressRepo.GetAll().ToList<Address>();
             Assert.IsTrue(myList.Count > 0);
         }
@@ -75,7 +73,7 @@ namespace DALUnitTest
         public void testAddressRetrieveOneUsingRepository()
         {
             var AddressRepo = new DataRepository<Address>();
-
+            Address Address1 = new Address("TestAddressCityRepo1", "111 TestAddressStreetRepo1", "KS", 11111);
             Address address1 = AddressRepo.GetBySpecificKey("City", "TestAddressCityRepo1").FirstOrDefault<Address>();
             Assert.IsTrue(address1.validate());
         }
@@ -83,12 +81,10 @@ namespace DALUnitTest
         public void testAddressDeletetUsingRepository()
         {
             var AddressRepo = new DataRepository<Address>();
-            List<Address> myList = AddressRepo.GetAll().ToList<Address>();
-            int last = myList.Count;
-            if (last == 0)
-                last = 1;
+            Address Address1 = new Address("TestAddressCityRepoDel1", "111 TestAddressStreetRepoDel1", "KS", 11111);
+            AddressRepo.Insert(Address1);
 
-            AddressRepo.Delete(myList[last - 1]);
+            AddressRepo.Delete(Address1);
         }
 
 
@@ -96,12 +92,10 @@ namespace DALUnitTest
         public void testAddressModifyUsingRepository()
         {
             var AddressRepo = new DataRepository<Address>();
-            List<Address> myList = AddressRepo.GetAll().ToList<Address>();
-            int last = myList.Count;
-            if (last == 0)
-                last = 1;
-            myList[last - 1].City = "ModifiedCity";
-            AddressRepo.Update(myList[0]);
+            Address Address1 = new Address("TestAddressCityRepoMod1", "111 TestAddressStreetRepoMod1", "KS", 11111);
+            AddressRepo.Insert(Address1); 
+            Address1.City = "modCity";
+            AddressRepo.Update(Address1);
         }
 
     }
