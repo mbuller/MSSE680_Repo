@@ -17,6 +17,29 @@ namespace MSSE680.DAL
          *               = 2 //Physical AND Virtual Card
          * byte ExpirationMonth
          * byte ExperationYear
+         */
+        public CreditCard(
+                    int Limit,
+                    double Balance,
+                    byte CardType,
+                    byte ExpirationMonth,
+                    byte ExpirationYear)
+        {
+            this.Limit = Limit;
+            this.Balance = Balance;
+            this.CardType = CardType;
+            this.ExpirationMonth = ExpirationMonth;
+            this.ExpirationYear = ExpirationYear;
+        }
+
+        /**
+         * int Limit
+         * double Balance
+         * byte CardType = 0 //Physica card
+         *               = 1 //Virtual Card
+         *               = 2 //Physical AND Virtual Card
+         * byte ExpirationMonth
+         * byte ExperationYear
          * Person CreditCardUser
          */
         public CreditCard(
@@ -33,6 +56,32 @@ namespace MSSE680.DAL
             this.ExpirationMonth = ExpirationMonth;
             this.ExpirationYear = ExpirationYear;
             this.CreditCardUser = CreditCardUser;
+            this.CreditCardUser_PersonId = CreditCardUser.PersonId;
+        }
+
+        /**
+         * int Limit
+         * double Balance
+         * byte CardType = 0 //Physica card
+         *               = 1 //Virtual Card
+         *               = 2 //Physical AND Virtual Card
+         * byte ExpirationMonth
+         * byte ExperationYear
+         */
+        public CreditCard(
+                    long CreditCardNumber,
+                    int Limit,
+                    double Balance,
+                    byte CardType,
+                    byte ExpirationMonth,
+                    byte ExpirationYear)
+        {
+            this.CreditCardNumber = CreditCardNumber;
+            this.Limit = Limit;
+            this.Balance = Balance;
+            this.CardType = CardType;
+            this.ExpirationMonth = ExpirationMonth;
+            this.ExpirationYear = ExpirationYear;
         }
 
         /**
@@ -63,6 +112,7 @@ namespace MSSE680.DAL
             this.ExpirationMonth = ExpirationMonth;
             this.ExpirationYear = ExpirationYear;
             this.CreditCardUser = CreditCardUser;
+            this.CreditCardUser_PersonId = CreditCardUser.PersonId;
         }
 
         /**
@@ -95,6 +145,7 @@ namespace MSSE680.DAL
             this.ExpirationMonth = ExpirationMonth;
             this.ExpirationYear = ExpirationYear;
             this.CreditCardUser = CreditCardUser;
+            this.CreditCardUser_PersonId = CreditCardUser.PersonId;
         }
 
 
@@ -128,6 +179,8 @@ namespace MSSE680.DAL
             this.ExpirationYear = ExpirationYear;
             this.CreditCardUser = CreditCardUser;
             this.Account = Account;
+            this.CreditCardUser_PersonId = CreditCardUser.PersonId;
+            this.Account_AccountId = Account.AccountId;
         }
 
         /**
@@ -162,6 +215,8 @@ namespace MSSE680.DAL
             this.ExpirationYear = ExpirationYear;
             this.CreditCardUser = CreditCardUser;
             this.Account = Account;
+            this.CreditCardUser_PersonId = CreditCardUser.PersonId;
+            this.Account_AccountId = Account.AccountId;
         }
        
 

@@ -12,6 +12,9 @@ namespace DALUnitTest
     [TestClass]
     public class AddressTest
     {
+        /// <summary>
+        /// test valid Address using validate
+        /// </summary>
         [TestMethod]
         public void testAddressValidateTrue()
         {
@@ -20,6 +23,9 @@ namespace DALUnitTest
             Assert.IsTrue(Address1.validate(), "testAddressValidateTrue Passed");
         }
 
+        /// <summary>
+        /// test invalid Address using validate
+        /// </summary>
         [TestMethod]
         public void testAddressValidateFalse()
         {
@@ -28,6 +34,9 @@ namespace DALUnitTest
             Assert.IsFalse(Address1.validate(), "testAddressValidateFalse Passed");
         }
 
+        /// <summary>
+        /// Add Address using entities
+        /// </summary>
         [TestMethod]
         public void testAddressAdd()
         {
@@ -38,6 +47,9 @@ namespace DALUnitTest
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Delete Address using entities
+        /// </summary>
         [TestMethod]
         public void testAddressDelete()
         {
@@ -52,7 +64,9 @@ namespace DALUnitTest
             db.SaveChanges();
         }
 
-
+        /// <summary>
+        /// Insert Address using repository
+        /// </summary>
         [TestMethod]
         public void testAddressInsertUsingRepository()
         {
@@ -61,6 +75,9 @@ namespace DALUnitTest
             AddressRepo.Insert(Address1);
         }
 
+        /// <summary>
+        /// Retrieve All Addresses using repository
+        /// </summary>
         [TestMethod]
         public void testAddressRetrieveAllUsingRepository()
         {
@@ -69,6 +86,10 @@ namespace DALUnitTest
             List<Address> myList = AddressRepo.GetAll().ToList<Address>();
             Assert.IsTrue(myList.Count > 0);
         }
+
+        /// <summary>
+        /// Retrieve Address using repository
+        /// </summary>
         [TestMethod]
         public void testAddressRetrieveOneUsingRepository()
         {
@@ -77,6 +98,10 @@ namespace DALUnitTest
             Address address1 = AddressRepo.GetBySpecificKey("City", "TestAddressCityRepo1").FirstOrDefault<Address>();
             Assert.IsTrue(address1.validate());
         }
+
+        /// <summary>
+        /// Delete Address using Repository
+        /// </summary>
         [TestMethod]
         public void testAddressDeletetUsingRepository()
         {
@@ -87,7 +112,9 @@ namespace DALUnitTest
             AddressRepo.Delete(Address1);
         }
 
-
+        /// <summary>
+        /// Modify Address using Repository
+        /// </summary>
         [TestMethod]
         public void testAddressModifyUsingRepository()
         {
@@ -103,6 +130,9 @@ namespace DALUnitTest
     [TestClass]
     public class PersonTest
     {
+        /// <summary>
+        /// Test valid Person using validate
+        /// </summary>
         [TestMethod]
         public void testPersonValidateTrue()
         {
@@ -112,6 +142,9 @@ namespace DALUnitTest
             Assert.IsTrue(Person1.validate(), "testPersonValidateTrue Passed");
         }
 
+        /// <summary>
+        /// test invalid Person using validate
+        /// </summary>
         [TestMethod]
         public void testPersonValidateFalse()
         {
@@ -123,7 +156,9 @@ namespace DALUnitTest
             Assert.IsFalse(Person1.validate(), "testPersonValidateTrue Passed");
         }
 
-
+        /// <summary>
+        /// Add Person using entities
+        /// </summary>
         [TestMethod]
         public void testPersonAdd()
         {
@@ -135,6 +170,9 @@ namespace DALUnitTest
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Delete Person using entities
+        /// </summary>
         [TestMethod]
         public void testPersonDelete()
         {
@@ -151,7 +189,9 @@ namespace DALUnitTest
 
         }
 
-
+        /// <summary>
+        /// Insert Person using repository
+        /// </summary>
         [TestMethod]
         public void testPersonInsertUsingRepository()
         {
@@ -162,6 +202,9 @@ namespace DALUnitTest
 
         }
 
+        /// <summary>
+        /// Retrieve Person using repository
+        /// </summary>
         [TestMethod]
         public void testPersonRetrieveOneUsingRepository()
         {
@@ -175,6 +218,9 @@ namespace DALUnitTest
             Assert.IsTrue(Person1.validate());
         }
 
+        /// <summary>
+        /// Retrieve All Persons using repository
+        /// </summary>
         [TestMethod]
         public void testPersonRetrieveAllUsingRepository()
         {
@@ -186,6 +232,9 @@ namespace DALUnitTest
             Assert.IsTrue(myList.Count > 0);
         }
 
+        /// <summary>
+        /// Delete Person using Repository
+        /// </summary>
         [TestMethod]
         public void testPersonDeletetUsingRepository()
         {
@@ -197,7 +246,9 @@ namespace DALUnitTest
             PersonRepo.Delete(Person1);
         }
 
-
+        /// <summary>
+        /// Modify Person using Repository
+        /// </summary>
         [TestMethod]
         public void testPersonModifyUsingRepository()
         {
@@ -214,6 +265,9 @@ namespace DALUnitTest
     [TestClass]
     public class CreditCardTest
     {
+        /// <summary>
+        /// Test valid CreditCard using validate
+        /// </summary>
         [TestMethod]
         public void testCreditCardValidateTrue()
         {
@@ -224,6 +278,9 @@ namespace DALUnitTest
             Assert.IsTrue(CreditCard1.validate(), "testCreditCardValidateTrue Passed");
         }
 
+        /// <summary>
+        /// Test invalid CreditCard using validate
+        /// </summary>
         [TestMethod]
         public void testCreditCardValidateFalse()
         {
@@ -235,7 +292,9 @@ namespace DALUnitTest
             Assert.IsFalse(CreditCard1.validate(), "testCreditCardValidateFalse Passed");
         }
 
-
+        /// <summary>
+        /// Add CreditCard using entities
+        /// </summary>
         [TestMethod]
         public void testCreditCardAdd()
         {
@@ -249,6 +308,9 @@ namespace DALUnitTest
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Delete CreditCard using entities
+        /// </summary>
         [TestMethod]
         public void testCreditCardDelete()
         {
@@ -256,16 +318,19 @@ namespace DALUnitTest
             bullerEntities db = new bullerEntities();
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
             Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller", "Password1", (byte)1, Address1);
-            CreditCard CreditCard1 = new CreditCard(123456789L, 55555, 700, 1, (byte)2, (byte)3, Person1);
+            CreditCard CreditCard3 = new CreditCard(123456789L, 5555, 700, 1, (byte)2, (byte)3, Person1);
+            CreditCard CreditCard1 = new CreditCard(123456789L, 5555, 700, 1, (byte)2, (byte)3);
             db.CreditCards.Add(CreditCard1);
             db.SaveChanges();
 
-            CreditCard CreditCard2 = (from c in db.CreditCards where c.Limit == 55555 select c).Single();
+            CreditCard CreditCard2 = (from c in db.CreditCards where c.Limit == 5555 select c).Single();
             db.CreditCards.Remove(CreditCard2);
             db.SaveChanges();
         }
 
-
+        /// <summary>
+        /// Insert CreditCard using repository
+        /// </summary>
         [TestMethod]
         public void testCreditCardInsertUsingRepository()
         {
@@ -277,6 +342,9 @@ namespace DALUnitTest
 
         }
 
+        /// <summary>
+        /// Retrieve CreditCard using repository
+        /// </summary>
         [TestMethod]
         public void testCreditCardRetrieveOneUsingRepository()
         {
@@ -290,6 +358,9 @@ namespace DALUnitTest
             Assert.IsTrue(CreditCard1.validate());
         }
 
+        /// <summary>
+        /// Retrieve All CreditCards using repository
+        /// </summary>
         [TestMethod]
         public void testCreditCardRetrieveAllUsingRepository()
         {
@@ -303,6 +374,9 @@ namespace DALUnitTest
             Assert.IsTrue(myList.Count > 0);
         }
 
+        /// <summary>
+        /// Delete CreditCard using Repository
+        /// </summary>
         [TestMethod]
         public void testCreditCardDeletetUsingRepository()
         {
@@ -315,7 +389,9 @@ namespace DALUnitTest
             CreditCardRepo.Delete(CreditCard1);
         }
 
-
+        /// <summary>
+        /// Modify CreditCard using Repository
+        /// </summary>
         [TestMethod]
         public void testCreditCardModifyUsingRepository()
         {
@@ -333,6 +409,9 @@ namespace DALUnitTest
     [TestClass]
     public class AccountTest
     {
+        /// <summary>
+        /// Test valid Account using validate
+        /// </summary>
         [TestMethod]
         public void testAccountValidateTrue()
         {
@@ -346,6 +425,9 @@ namespace DALUnitTest
             Assert.IsTrue(Account1.validate(), "testAccountValidateTrue Passed");
         }
 
+        /// <summary>
+        /// Test invalid Account using validate
+        /// </summary>
         [TestMethod]
         public void testAccountValidateFalse()
         {
@@ -357,7 +439,10 @@ namespace DALUnitTest
 
             Assert.IsFalse(Account1.validate(), "testAccountValidateFalse Passed");
         }
-    
+
+        /// <summary>
+        /// Add Account using entities
+        /// </summary>
         [TestMethod]
         public void testAccountAdd()
         {
@@ -372,6 +457,9 @@ namespace DALUnitTest
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Delete Account using entities
+        /// </summary>
         [TestMethod]
         public void testAccountDelete()
         {
@@ -389,7 +477,9 @@ namespace DALUnitTest
           db.SaveChanges();
         }
 
-
+        /// <summary>
+        /// Insert Account using repository
+        /// </summary>
         [TestMethod]
         public void testAccountInsertUsingRepository()
         {
@@ -401,6 +491,9 @@ namespace DALUnitTest
             AccountRepo.Insert(Account1);
         }
 
+        /// <summary>
+        /// Retrieve Account using repository
+        /// </summary>
         [TestMethod]
         public void testAccountRetrieveOneUsingRepository()
         {
@@ -410,11 +503,14 @@ namespace DALUnitTest
             CreditCard CreditCard1 = new CreditCard(123456789L, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 2000, 200);
             AccountRepo.Insert(Account1);
-            
-            Account Account2 = AccountRepo.GetBySpecificKey("Limit", (int?)2000).FirstOrDefault<Account>();
-            Assert.IsTrue(Account2.validate());
+
+            Account Account2 = AccountRepo.GetBySpecificKey("Limit", 2000).FirstOrDefault<Account>();
+            Assert.IsTrue(Account2.Limit == 2000);
         }
 
+        /// <summary>
+        /// Retrieve All Accounts using repository
+        /// </summary>
         [TestMethod]
         public void testAccountRetrieveAllUsingRepository()
         {
@@ -429,6 +525,9 @@ namespace DALUnitTest
             Assert.IsTrue(myList.Count > 0);
         }
 
+        /// <summary>
+        /// Delete Account using Repository
+        /// </summary>
         [TestMethod]
         public void testAccountDeletetUsingRepository()
         {
@@ -442,7 +541,9 @@ namespace DALUnitTest
             AccountRepo.Delete(Account1);
         }
 
-
+        /// <summary>
+        /// Modify Account using Repository
+        /// </summary>
         [TestMethod]
         public void testAccountModifyUsingRepository()
         {
@@ -461,6 +562,9 @@ namespace DALUnitTest
     [TestClass]
     public class TransactionTest
     {
+        /// <summary>
+        /// Test valid Account using validate
+        /// </summary>
         [TestMethod]
         public void testTransactionValidateTrue()
         {
@@ -473,6 +577,9 @@ namespace DALUnitTest
             Assert.IsTrue(Transaction1.validate(), "testTransitionValidateTrue Passed");
         }
 
+        /// <summary>
+        /// Test invalid Account using validate
+        /// </summary>
         [TestMethod]
         public void testTransactionValidateFalse()
         {
@@ -481,6 +588,9 @@ namespace DALUnitTest
             Assert.IsFalse(Transaction2.validate(), "testTransitionValidateFalse Passed");
         }
 
+        /// <summary>
+        /// Add Account using entities
+        /// </summary>
         [TestMethod]
         public void testTransactionAdd()
         {
@@ -496,6 +606,9 @@ namespace DALUnitTest
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Delete Account using entities
+        /// </summary>
         [TestMethod]
         public void testTransactionDelete()
         {
@@ -514,7 +627,9 @@ namespace DALUnitTest
             db.SaveChanges();
         }
 
-
+        /// <summary>
+        /// Insert Account using repository
+        /// </summary>
         [TestMethod]
         public void testTransactionInsertUsingRepository()
         {
@@ -527,6 +642,9 @@ namespace DALUnitTest
             TransactionRepo.Insert(Transaction1);
         }
 
+        /// <summary>
+        /// Retrieve Account using repository
+        /// </summary>
         [TestMethod]
         public void testTransactionRetrieveOneUsingRepository()
         {
@@ -542,6 +660,9 @@ namespace DALUnitTest
             Assert.IsTrue(Transaction2.validate());
         }
 
+        /// <summary>
+        /// Retrieve All Accounts using repository
+        /// </summary>
         [TestMethod]
         public void testTransactionRetrieveAllUsingRepository()
         {
@@ -557,6 +678,9 @@ namespace DALUnitTest
             Assert.IsTrue(myList.Count > 0);
         }
 
+        /// <summary>
+        /// Delete Account using Repository
+        /// </summary>
         [TestMethod]
         public void testTransactionDeletetUsingRepository()
         {
@@ -571,7 +695,9 @@ namespace DALUnitTest
             TransactionRepo.Delete(Transaction1);
         }
 
-
+        /// <summary>
+        /// Modify Account using Repository
+        /// </summary>
         [TestMethod]
         public void testTransactionModifyUsingRepository()
         {

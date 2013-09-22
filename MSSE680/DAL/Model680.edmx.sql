@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 09/14/2013 18:15:56
+-- Date Created: 09/21/2013 14:26:58
 -- Generated from EDMX file: C:\Users\mbuller\Documents\GitHub\MSSE680_Repo\MSSE680\DAL\Model680.edmx
 -- --------------------------------------------------
 
@@ -26,11 +26,26 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CreditCards_dbo_Accounts_Account_AccountId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_dbo_CreditCards_dbo_Accounts_Account_AccountId];
 GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId];
+GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_People_dbo_Addresses_Address_AddressId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[People] DROP CONSTRAINT [FK_dbo_People_dbo_Addresses_Address_AddressId];
 GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId];
+IF OBJECT_ID(N'[dbo].[FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Accounts] DROP CONSTRAINT [FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_Accounts_dbo_People_AccountUser_PersonId1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Accounts] DROP CONSTRAINT [FK_dbo_Accounts_dbo_People_AccountUser_PersonId1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CreditCards_dbo_Accounts_Account_AccountId1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_dbo_CreditCards_dbo_Accounts_Account_AccountId1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_People_dbo_Addresses_Address_AddressId1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[People] DROP CONSTRAINT [FK_dbo_People_dbo_Addresses_Address_AddressId1];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Transactions] DROP CONSTRAINT [FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId];
@@ -73,9 +88,9 @@ GO
 -- Creating table 'Addresses'
 CREATE TABLE [dbo].[Addresses] (
     [AddressId] int IDENTITY(1,1) NOT NULL,
-    [City] nvarchar(max)  NULL,
-    [Street] nvarchar(max)  NULL,
-    [State] nvarchar(max)  NULL,
+    [City] nvarchar(max)  NOT NULL,
+    [Street] nvarchar(max)  NOT NULL,
+    [State] nvarchar(max)  NOT NULL,
     [Zipcode] int  NOT NULL
 );
 GO
@@ -98,9 +113,9 @@ GO
 CREATE TABLE [dbo].[People] (
     [PersonId] int IDENTITY(1,1) NOT NULL,
     [Age] tinyint  NOT NULL,
-    [FirstName] nvarchar(max)  NULL,
-    [LastName] nvarchar(max)  NULL,
-    [UserName] nvarchar(max)  NULL,
+    [FirstName] nvarchar(max)  NOT NULL,
+    [LastName] nvarchar(max)  NOT NULL,
+    [UserName] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NULL,
     [Permissions] tinyint  NOT NULL,
     [Address_AddressId] int  NULL
@@ -114,7 +129,7 @@ CREATE TABLE [dbo].[Transactions] (
     [TransactionDay] tinyint  NOT NULL,
     [TransactionMonth] tinyint  NOT NULL,
     [TransactionYear] tinyint  NOT NULL,
-    [BusinessName] nvarchar(max)  NULL,
+    [BusinessName] nvarchar(max)  NOT NULL,
     [CreditCard_CreditCardId] int  NULL
 );
 GO

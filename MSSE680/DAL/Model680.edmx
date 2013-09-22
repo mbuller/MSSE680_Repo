@@ -63,17 +63,17 @@
           <Property Name="AccountId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CreditCard_CreditCardId" Type="int" />
           <Property Name="AccountUser_PersonId" Type="int" />
-          <Property Name="Limit" Type="int" />
-          <Property Name="Balance" Type="float" />
+          <Property Name="Limit" Type="int" Nullable="false" />
+          <Property Name="Balance" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Addresses">
           <Key>
             <PropertyRef Name="AddressId" />
           </Key>
           <Property Name="AddressId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="City" Type="nvarchar(max)" />
-          <Property Name="Street" Type="nvarchar(max)" />
-          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Street" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="State" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Zipcode" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CreditCards">
@@ -96,9 +96,9 @@
           </Key>
           <Property Name="PersonId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Age" Type="tinyint" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar(max)" />
-          <Property Name="LastName" Type="nvarchar(max)" />
-          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" />
           <Property Name="Permissions" Type="tinyint" Nullable="false" />
           <Property Name="Address_AddressId" Type="int" />
@@ -112,7 +112,7 @@
           <Property Name="TransactionDay" Type="tinyint" Nullable="false" />
           <Property Name="TransactionMonth" Type="tinyint" Nullable="false" />
           <Property Name="TransactionYear" Type="tinyint" Nullable="false" />
-          <Property Name="BusinessName" Type="nvarchar(max)" />
+          <Property Name="BusinessName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreditCard_CreditCardId" Type="int" />
         </EntityType>
         <Association Name="FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId">
@@ -292,17 +292,17 @@
           <NavigationProperty Name="CreditCard" Relationship="bullerModel.FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId" FromRole="Accounts" ToRole="CreditCards" />
           <NavigationProperty Name="AccountUser" Relationship="bullerModel.FK_dbo_Accounts_dbo_People_AccountUser_PersonId" FromRole="Accounts" ToRole="People" />
           <NavigationProperty Name="CreditCards" Relationship="bullerModel.FK_dbo_CreditCards_dbo_Accounts_Account_AccountId" FromRole="Accounts" ToRole="CreditCards" />
-          <Property Type="Int32" Name="Limit" />
-          <Property Type="Double" Name="Balance" />
+          <Property Type="Int32" Name="Limit" Nullable="false" />
+          <Property Type="Double" Name="Balance" Nullable="false" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="AddressId" />
           </Key>
           <Property Name="AddressId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="City" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Street" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="State" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
           <Property Name="Zipcode" Type="Int32" Nullable="false" />
           <NavigationProperty Name="People" Relationship="bullerModel.FK_dbo_People_dbo_Addresses_Address_AddressId" FromRole="Addresses" ToRole="People" />
         </EntityType>
@@ -330,9 +330,9 @@
           </Key>
           <Property Name="PersonId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Age" Type="Byte" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Permissions" Type="Byte" Nullable="false" />
           <Property Name="Address_AddressId" Type="Int32" />
@@ -349,7 +349,7 @@
           <Property Name="TransactionDay" Type="Byte" Nullable="false" />
           <Property Name="TransactionMonth" Type="Byte" Nullable="false" />
           <Property Name="TransactionYear" Type="Byte" Nullable="false" />
-          <Property Name="BusinessName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BusinessName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
           <Property Name="CreditCard_CreditCardId" Type="Int32" />
           <NavigationProperty Name="CreditCard" Relationship="bullerModel.FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId" FromRole="Transactions" ToRole="CreditCards" />
         </EntityType>

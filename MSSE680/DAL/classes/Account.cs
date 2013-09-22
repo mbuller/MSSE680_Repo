@@ -19,6 +19,8 @@ namespace MSSE680.DAL
         {
             this.CreditCard = CreditCard;
             this.AccountUser = AccountUser;
+            this.CreditCard_CreditCardId = CreditCard.CreditCardId;
+            this.AccountUser_PersonId = AccountUser.PersonId;
         }
 
         /**
@@ -34,7 +36,45 @@ namespace MSSE680.DAL
             this.AccountId = AccountId;
             this.CreditCard = CreditCard;
             this.AccountUser = AccountUser;
+            this.CreditCard_CreditCardId = CreditCard.CreditCardId;
+            this.AccountUser_PersonId = AccountUser.PersonId;
         }
+
+        /**
+        * int AccountNumber
+        * AccountUser AccountUser
+        * CreditCard CreditCard
+        */
+        public Account(
+                   Person AccountUser,
+                   int Limit,
+                   double Balance)
+        {
+            this.AccountUser = AccountUser;
+            this.Limit = Limit;
+            this.Balance = Balance;
+            this.AccountUser_PersonId = AccountUser.PersonId;
+        }
+
+        /**
+        * int AccountNumber
+        * AccountUser AccountUser
+        * CreditCard CreditCard
+        */
+        public Account(
+                   CreditCard CreditCard,
+                   Person AccountUser,
+                   int Limit,
+                   double Balance)
+        {
+            this.CreditCard = CreditCard;
+            this.AccountUser = AccountUser;
+            this.Limit = Limit;
+            this.Balance = Balance;
+            this.CreditCard_CreditCardId = CreditCard.CreditCardId;
+            this.AccountUser_PersonId = AccountUser.PersonId;
+        }
+
 
         /**
         * int AccountNumber
@@ -53,24 +93,11 @@ namespace MSSE680.DAL
             this.AccountUser = AccountUser;
             this.Limit = Limit;
             this.Balance = Balance;
+            this.CreditCard_CreditCardId = CreditCard.CreditCardId;
+            this.AccountUser_PersonId = AccountUser.PersonId;
         }
 
-        /**
-        * int AccountNumber
-        * AccountUser AccountUser
-        * CreditCard CreditCard
-        */
-        public Account(
-                   CreditCard CreditCard,
-                   Person AccountUser,
-                   int Limit,
-                   double Balance)
-        {
-            this.CreditCard = CreditCard;
-            this.AccountUser = AccountUser;
-            this.Limit = Limit;
-            this.Balance = Balance;
-        }
+
 
         /**
          * Validate if the instance variables are valid

@@ -61,6 +61,7 @@ namespace MSSE680.DAL
             this.TransactionYear = TransactionYear;
             this.BusinessName = BusinessName;
             this.CreditCard = creditCard;
+            this.CreditCard_CreditCardId = creditCard.CreditCardId;
         }
 
         /**
@@ -112,6 +113,7 @@ namespace MSSE680.DAL
             this.TransactionYear = TransactionYear;
             this.BusinessName = BusinessName;
             this.CreditCard = creditCard;
+            this.CreditCard_CreditCardId = creditCard.CreditCardId;
         }
 
 

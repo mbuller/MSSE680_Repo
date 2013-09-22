@@ -31,6 +31,7 @@ namespace MSSE680.DAL
             this.UserName = UserName;
             this.Password = "Password1";
             this.Address = Address;
+            this.Address_AddressId = Address.AddressId;
         }
 
 
@@ -53,6 +54,7 @@ namespace MSSE680.DAL
             this.UserName = UserName;
             this.Password = "Password1";
             this.Address = Address;
+            this.Address_AddressId = Address.AddressId;
         }
 
         /**
@@ -78,6 +80,31 @@ namespace MSSE680.DAL
             this.Password = Password;
             this.Permissions = Permissions;
             this.Address = Address;
+            this.Address_AddressId = Address.AddressId;
+        }
+
+        /**
+         * byte Age
+         * String FirstName
+         * String LastName
+         * String UserName
+         * String Password
+         */
+        public Person(
+                    byte Age,
+                    String FirstName,
+                    String LastName,
+                    String UserName,
+                    String Password,
+                    byte Permissions)
+        {
+
+            this.Age = Age;
+            this.FirstName = FirstName;
+            this.LastName = LastName;
+            this.UserName = UserName;
+            this.Password = Password;
+            this.Permissions = Permissions;
         }
 
         /**
@@ -108,6 +135,7 @@ namespace MSSE680.DAL
             this.Password = Password;
             this.Permissions = Permissions;
             this.Address = Address;
+            this.Address_AddressId = Address.AddressId;
         }
 
         /**
