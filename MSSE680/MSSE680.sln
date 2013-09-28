@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL.csproj", "{3CB225A5-E53A-493B-9D64-BE872684D650}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALUnitTest", "..\DALUnitTest\DALUnitTest.csproj", "{D55581E8-EC1B-45DF-A061-BE85B1B09DD7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALUnitTest", "DALUnitTest\DALUnitTest.csproj", "{D55581E8-EC1B-45DF-A061-BE85B1B09DD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceUnitTest", "..\ServiceUnitTest\ServiceUnitTest.csproj", "{51CFDA0C-600E-4037-8C1C-40AD27EF8A9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceUnitTest", "ServiceUnitTest\ServiceUnitTest.csproj", "{51CFDA0C-600E-4037-8C1C-40AD27EF8A9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Services\Service.csproj", "{8D45F84F-55D8-42E3-958C-EFA10CE7820F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "..\Business\Business.csproj", "{39FE6CF2-1582-4CA1-B029-0450FD7ADDDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{39FE6CF2-1582-4CA1-B029-0450FD7ADDDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessUnitTest", "BusinessUnitTest\BusinessUnitTest.csproj", "{37718813-98FE-493F-A33B-ADFBDA8FFBEA}"
 EndProject

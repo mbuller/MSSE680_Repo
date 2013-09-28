@@ -58,11 +58,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MSSE680\DAL.csproj">
+    <ProjectReference Include="..\DAL.csproj">
       <Project>{3cb225a5-e53a-493b-9d64-be872684d650}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSSE680\Services\Service.csproj">
+    <ProjectReference Include="..\Services\Service.csproj">
       <Project>{8d45f84f-55d8-42e3-958c-efa10ce7820f}</Project>
       <Name>Service</Name>
     </ProjectReference>

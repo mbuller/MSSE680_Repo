@@ -64,7 +64,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Business\Business.csproj">
+    <ProjectReference Include="..\Business\Business.csproj">
       <Project>{39fe6cf2-1582-4ca1-b029-0450fd7addda}</Project>
       <Name>Business</Name>
     </ProjectReference>

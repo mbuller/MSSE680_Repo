@@ -59,7 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MSSE680\DAL.csproj">
+    <ProjectReference Include="..\DAL.csproj">
       <Project>{3cb225a5-e53a-493b-9d64-be872684d650}</Project>
       <Name>DAL</Name>
     </ProjectReference>
