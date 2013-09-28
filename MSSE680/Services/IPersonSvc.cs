@@ -18,6 +18,6 @@ namespace MSSE680.Service
         ICollection<Person> RetrieveAllPeople();
 
         void AddAddressToPerson(Address Address, Person Person);
-        void RemoveAddressToPerson(Address Address, Person Person);
+        void RemoveAddressFromPerson(Address Address, Person Person);
     }
 }

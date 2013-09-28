@@ -7,15 +7,17 @@ using MSSE680.DAL;
 
 namespace MSSE680.Service
 {
-    public partial class SvcFactory
+    public class SvcFactory
     {
-       // public SvcFactory() { }
+            private SvcFactory() { }
+            private static SvcFactory svcFactory = new SvcFactory();
+            public static SvcFactory GetInstance() { return svcFactory; }
 
             /**
              * 
              *  return appropriate Service
              */
-            public IService getService(String service)
+            public IService GetService(String service)
             {
                 IService ReturnService;
              

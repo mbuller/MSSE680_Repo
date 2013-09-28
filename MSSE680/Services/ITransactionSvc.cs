@@ -19,6 +19,6 @@ namespace MSSE680.Service
         ICollection<Transaction> RetrieveAllTransactions();
 
         void AddCreditCardToTransaction(CreditCard CreditCard, Transaction Transaction);
-        void RemoveCreditCardToTransaction(CreditCard CreditCard, Transaction Transaction);
+        void RemoveCreditCardFromTransaction(CreditCard CreditCard, Transaction Transaction);
     }
 }

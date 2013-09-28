@@ -55,7 +55,7 @@ namespace MSSE680.Service
             Transaction.CreditCard_CreditCardId = CreditCard.CreditCardId;
             ModifyTransaction(Transaction);
         }
-        public void RemoveCreditCardToTransaction(CreditCard CreditCard, Transaction Transaction)
+        public void RemoveCreditCardFromTransaction(CreditCard CreditCard, Transaction Transaction)
         {
             Transaction.CreditCard_CreditCardId = null;
             ModifyTransaction(Transaction);

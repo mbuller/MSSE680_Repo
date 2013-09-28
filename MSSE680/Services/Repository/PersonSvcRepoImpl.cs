@@ -55,7 +55,7 @@ namespace MSSE680.Service
             Person.Address_AddressId = Address.AddressId;
             ModifyPerson(Person);
         }
-        public void RemoveAddressToPerson(Address Address, Person Person)
+        public void RemoveAddressFromPerson(Address Address, Person Person)
         {
             Person.Address_AddressId = null;
             ModifyPerson(Person);
