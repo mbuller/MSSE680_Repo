@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 09/21/2013 14:26:58
--- Generated from EDMX file: C:\Users\mbuller\Documents\GitHub\MSSE680_Repo\MSSE680\DAL\Model680.edmx
+-- Date Created: 10/05/2013 14:49:50
+-- Generated from EDMX file: c:\users\mbuller\documents\visual studio 2012\Projects\MSSE680_SPF3\DAL\Model680.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -31,21 +31,6 @@ IF OBJECT_ID(N'[dbo].[FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId]', '
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_People_dbo_Addresses_Address_AddressId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[People] DROP CONSTRAINT [FK_dbo_People_dbo_Addresses_Address_AddressId];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId1]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Accounts] DROP CONSTRAINT [FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId1];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_Accounts_dbo_People_AccountUser_PersonId1]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Accounts] DROP CONSTRAINT [FK_dbo_Accounts_dbo_People_AccountUser_PersonId1];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CreditCards_dbo_Accounts_Account_AccountId1]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_dbo_CreditCards_dbo_Accounts_Account_AccountId1];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId1]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId1];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_People_dbo_Addresses_Address_AddressId1]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[People] DROP CONSTRAINT [FK_dbo_People_dbo_Addresses_Address_AddressId1];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Transactions] DROP CONSTRAINT [FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId];
@@ -81,16 +66,16 @@ CREATE TABLE [dbo].[Accounts] (
     [CreditCard_CreditCardId] int  NULL,
     [AccountUser_PersonId] int  NULL,
     [Limit] int  NOT NULL,
-    [Balance] float  NOT NULL
+    [Balance] decimal(10,4)  NOT NULL
 );
 GO
 
 -- Creating table 'Addresses'
 CREATE TABLE [dbo].[Addresses] (
     [AddressId] int IDENTITY(1,1) NOT NULL,
-    [City] nvarchar(max)  NOT NULL,
-    [Street] nvarchar(max)  NOT NULL,
-    [State] nvarchar(max)  NOT NULL,
+    [City] nvarchar(50)  NOT NULL,
+    [Street] nvarchar(50)  NOT NULL,
+    [State] nvarchar(50)  NOT NULL,
     [Zipcode] int  NOT NULL
 );
 GO
@@ -98,10 +83,10 @@ GO
 -- Creating table 'CreditCards'
 CREATE TABLE [dbo].[CreditCards] (
     [CreditCardId] int IDENTITY(1,1) NOT NULL,
-    [CreditCardNumber] bigint  NOT NULL,
+    [CreditCardNumber] bigint  NOT NULL UNIQUE,
     [CardType] tinyint  NOT NULL,
     [Limit] int  NOT NULL,
-    [Balance] float  NOT NULL,
+    [Balance] decimal(10,4)  NOT NULL,
     [ExpirationMonth] tinyint  NOT NULL,
     [ExpirationYear] tinyint  NOT NULL,
     [CreditCardUser_PersonId] int  NULL,
@@ -111,12 +96,12 @@ GO
 
 -- Creating table 'People'
 CREATE TABLE [dbo].[People] (
-    [PersonId] int IDENTITY(1,1) NOT NULL,
+    [PersonId] int IDENTITY(1,1) NOT NULL UNIQUE,
     [Age] tinyint  NOT NULL,
-    [FirstName] nvarchar(max)  NOT NULL,
-    [LastName] nvarchar(max)  NOT NULL,
-    [UserName] nvarchar(max)  NOT NULL,
-    [Password] nvarchar(max)  NULL,
+    [FirstName] nvarchar(50)  NOT NULL,
+    [LastName] nvarchar(50)  NOT NULL,
+    [UserName] nvarchar(50)  NOT NULL,
+    [Password] nvarchar(50)  NOT NULL,
     [Permissions] tinyint  NOT NULL,
     [Address_AddressId] int  NULL
 );
@@ -125,11 +110,11 @@ GO
 -- Creating table 'Transactions'
 CREATE TABLE [dbo].[Transactions] (
     [TransactionId] int IDENTITY(1,1) NOT NULL,
-    [Amount] float  NOT NULL,
+    [Amount] decimal(10,4)  NOT NULL,
     [TransactionDay] tinyint  NOT NULL,
     [TransactionMonth] tinyint  NOT NULL,
     [TransactionYear] tinyint  NOT NULL,
-    [BusinessName] nvarchar(max)  NOT NULL,
+    [BusinessName] nvarchar(25)  NOT NULL,
     [CreditCard_CreditCardId] int  NULL
 );
 GO

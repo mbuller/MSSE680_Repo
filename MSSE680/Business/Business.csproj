@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{39FE6CF2-1582-4CA1-B029-0450FD7ADDDA}</ProjectGuid>
+    <ProjectGuid>{D8563F67-E52D-4133-A33B-E7D22CEB6021}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Business</RootNamespace>
@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\MSSE680\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,17 +48,17 @@
     <Compile Include="TransactionMgr.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DAL.csproj">
-      <Project>{3cb225a5-e53a-493b-9d64-be872684d650}</Project>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{e10bdb29-86e2-4407-adcc-487c342e05a6}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Service.csproj">
-      <Project>{8d45f84f-55d8-42e3-958c-efa10ce7820f}</Project>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{ba9eb55c-fae8-40bb-9a6d-37ceb0fa2119}</Project>
       <Name>Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

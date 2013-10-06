@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Data.Entity;
 using System.Configuration;
 
-namespace MSSE680.DAL
+namespace DAL
 {
 
     /// <summary>

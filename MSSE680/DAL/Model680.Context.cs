@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MSSE680.DAL
+namespace DAL
 {
     using System;
     using System.Data.Entity;

@@ -1,0 +1,76 @@
+﻿@model DAL.Transaction
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Transaction</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Amount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Amount)
+            @Html.ValidationMessageFor(model => model.Amount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransactionDay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TransactionDay)
+            @Html.ValidationMessageFor(model => model.TransactionDay)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransactionMonth)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TransactionMonth)
+            @Html.ValidationMessageFor(model => model.TransactionMonth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransactionYear)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TransactionYear)
+            @Html.ValidationMessageFor(model => model.TransactionYear)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BusinessName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BusinessName)
+            @Html.ValidationMessageFor(model => model.BusinessName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreditCard_CreditCardId, "CreditCard")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CreditCard_CreditCardId", String.Empty)
+            @Html.ValidationMessageFor(model => model.CreditCard_CreditCardId)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

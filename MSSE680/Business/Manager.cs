@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MSSE680.DAL;
-using MSSE680.Service;
+using DAL;
+using Service;
 
-namespace MSSE680.Business
+namespace Business
 {
     public abstract class Manager
     {

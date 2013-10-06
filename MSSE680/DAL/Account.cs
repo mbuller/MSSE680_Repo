@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MSSE680.DAL
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
@@ -23,7 +23,7 @@ namespace MSSE680.DAL
         public Nullable<int> CreditCard_CreditCardId { get; set; }
         public Nullable<int> AccountUser_PersonId { get; set; }
         public int Limit { get; set; }
-        public double Balance { get; set; }
+        public decimal Balance { get; set; }
     
         public virtual CreditCard CreditCard { get; set; }
         public virtual Person AccountUser { get; set; }

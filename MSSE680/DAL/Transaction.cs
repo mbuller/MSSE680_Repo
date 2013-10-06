@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MSSE680.DAL
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace MSSE680.DAL
     public partial class Transaction
     {
         public int TransactionId { get; set; }
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
         public byte TransactionDay { get; set; }
         public byte TransactionMonth { get; set; }
         public byte TransactionYear { get; set; }

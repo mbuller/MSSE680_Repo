@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MSSE680.DAL
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace MSSE680.DAL
         public long CreditCardNumber { get; set; }
         public byte CardType { get; set; }
         public int Limit { get; set; }
-        public double Balance { get; set; }
+        public decimal Balance { get; set; }
         public byte ExpirationMonth { get; set; }
         public byte ExpirationYear { get; set; }
         public Nullable<int> CreditCardUser_PersonId { get; set; }
