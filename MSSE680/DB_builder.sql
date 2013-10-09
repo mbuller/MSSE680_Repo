@@ -3,7 +3,7 @@
 -- --------------------------------------------------
 -- Date Created: 10/05/2013 14:49:50
 -- Generated from EDMX file: c:\users\mbuller\documents\visual studio 2012\Projects\MSSE680_SPF3\DAL\Model680.edmx
--- --------------------------------------------------
+-- -------------------------------------------------- 
 
 SET QUOTED_IDENTIFIER OFF;
 GO
