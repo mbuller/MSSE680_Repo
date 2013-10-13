@@ -18,6 +18,9 @@ namespace Service
         Transaction RetrieveTransaction(String DBColumnName, int? NullableIntValue);
         ICollection<Transaction> RetrieveAllTransactions();
 
+        ICollection<Transaction> RetrieveTransactions(String DBColumnName, int? NullableIntValue);
+        ICollection<Transaction> RetrieveTransactions(String DBColumnName, int NullableIntValue);
+
         void AddCreditCardToTransaction(CreditCard CreditCard, Transaction Transaction);
         void RemoveCreditCardFromTransaction(CreditCard CreditCard, Transaction Transaction);
 

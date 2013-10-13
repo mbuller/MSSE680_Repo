@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL
 {
+    [MetadataTypeAttribute(typeof(AccountMetadata))]
     public partial class Account
     {
 
@@ -122,4 +125,18 @@ namespace DAL
             return true;
         }
     }
+
+    public class AccountMetadata
+    {
+         [DisplayName("Account ID ")]
+        public int AccountId { get; set; }
+        [DisplayName("CreditCard ID ")]
+        public Nullable<int> CreditCard_CreditCardId { get; set; }
+        [DisplayName("Person ID ")]
+        public Nullable<int> AccountUser_PersonId { get; set; }
+        [DisplayName("Limit ")]
+        public int Limit { get; set; }
+        [DisplayName("Balance ")]
+        public decimal Balance { get; set; }
+}
 }

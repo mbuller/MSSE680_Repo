@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DAL.Transaction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionMonth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BusinessName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditCard.CreditCardId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionMonth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionYear)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusinessName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditCard.CreditCardId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TransactionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TransactionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TransactionId })
+        </td>
+    </tr>
+}
+
+</table>

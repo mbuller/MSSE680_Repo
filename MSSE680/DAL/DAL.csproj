@@ -114,6 +114,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model680.edmx.sql" />
+    <Content Include="Model680_2.edmx.sql" />
+    <Content Include="Model680_3.edmx.sql" />
+    <Content Include="Model680_4.edmx.sql" />
+    <Content Include="Model680_5.edmx.sql" />
+    <Content Include="Model680_webpages_1.edmx.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

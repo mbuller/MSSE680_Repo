@@ -43,6 +43,14 @@ namespace Service
         {
             return TransactionRepo.GetBySpecificKey(DBColumnName, NullableIntValue).FirstOrDefault<Transaction>();
         }
+        public ICollection<Transaction> RetrieveTransactions(String DBColumnName, int NullableIntValue)
+        {
+            return TransactionRepo.GetBySpecificKey(DBColumnName, NullableIntValue).ToList<Transaction>();
+        }
+        public ICollection<Transaction> RetrieveTransactions(String DBColumnName, int? NullableIntValue)
+        {
+            return TransactionRepo.GetBySpecificKey(DBColumnName, NullableIntValue).ToList<Transaction>();
+        }
 
         public ICollection<Transaction> RetrieveAllTransactions()
         {

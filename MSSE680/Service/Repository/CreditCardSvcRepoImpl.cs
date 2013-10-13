@@ -44,7 +44,15 @@ namespace Service
         {
             return CreditCardRepo.GetBySpecificKey(DBColumnName, NullableIntValue).FirstOrDefault<CreditCard>();
         }
-
+        public ICollection<CreditCard> RetrieveCreditCards(String DBColumnName, int NullableIntValue)
+        {
+            return CreditCardRepo.GetBySpecificKey(DBColumnName, NullableIntValue).ToList<CreditCard>();
+        }        
+        
+        public ICollection<CreditCard> RetrieveCreditCards(String DBColumnName, int? NullableIntValue)
+        {
+            return CreditCardRepo.GetBySpecificKey(DBColumnName, NullableIntValue).ToList<CreditCard>();
+        }
         public ICollection<CreditCard> RetrieveAllCreditCards()
         {
             return CreditCardRepo.GetAll().ToList<CreditCard>();

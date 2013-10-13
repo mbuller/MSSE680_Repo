@@ -16,6 +16,9 @@ namespace Service
         Address RetrieveAddress(String DBColumnName, int IntValue);
         Address RetrieveAddress(String DBColumnName, int? NullableIntValue);
 
+        ICollection<Address> RetrieveAddresses(String DBColumnName, int? NullableIntValue);
+        ICollection<Address> RetrieveAddresses(String DBColumnName, int NullableIntValue);
+
         ICollection<Address> RetrieveAllAddresses();
         void DisposeAddress();
     }

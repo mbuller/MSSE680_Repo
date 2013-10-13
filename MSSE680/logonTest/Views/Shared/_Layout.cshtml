@@ -1,0 +1,64 @@
+﻿@using logonTest.App_Code;
+@using System.Web.Mvc.Html;
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - SPF Account</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("SPF Account", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+
+                            <li>@Html.ActionLink("User Profile", "Index", "PersonAdmin").If(User.IsInRole("admin"))</li>
+                            <li>@Html.ActionLink("Addresses", "Index", "AddressAdmin").If(User.IsInRole("Admin"))</li>
+                            <li>@Html.ActionLink("People", "Index", "PersonAdmin").If(User.IsInRole("Admin"))</li>
+                            <li>@Html.ActionLink("CreditCards", "Index", "CreditCardAdmin").If(User.IsInRole("Admin"))</li>
+                            <li>@Html.ActionLink("Accounts", "Index", "SPFAccountAdmin").If(User.IsInRole("Admin"))</li>
+                            <li>@Html.ActionLink("Transactions", "Index", "TransactionAdmin").If(User.IsInRole("Admin"))</li>
+
+                            <li>@Html.ActionLink("Address", "Index", "AddressUser").If(User.IsInRole("User"))</li>
+                            <li>@Html.ActionLink("User Profile", "Index", "PersonUser").If(User.IsInRole("User"))</li>
+                            <li>@Html.ActionLink("CreditCards", "Index", "CreditCardUser").If(User.IsInRole("User"))</li>
+                            <li>@Html.ActionLink("Account", "Index", "SPFAccountUser").If(User.IsInRole("User"))</li>
+                            <li>@Html.ActionLink("Transactions", "Index", "TransactionUser").If(User.IsInRole("User"))</li>
+                            
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

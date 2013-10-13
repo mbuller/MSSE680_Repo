@@ -1,0 +1,43 @@
+﻿@model DAL.Account
+
+@{
+    ViewBag.Title = "Accounts";
+}
+
+<h2>Accounts</h2>
+
+<fieldset>
+    <legend>Account</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreditCard.CreditCardId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreditCard.CreditCardId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AccountUser.PersonId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AccountUser.PersonId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Limit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Limit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Balance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Balance)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AccountId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

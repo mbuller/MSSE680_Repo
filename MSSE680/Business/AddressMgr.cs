@@ -12,10 +12,12 @@ namespace Business
     public class AddressMgr : Manager
     {
         public IAddressSvc addressSvc;
+        public IPersonSvc personSvc;
 
         public AddressMgr()
         {
             addressSvc = (IAddressSvc)GetService("AddressSvcRepoImpl");
+            personSvc = (IPersonSvc)GetService("PersonSvcRepoImpl");
         }
 
         public void CreateAddress(Address address)
@@ -27,6 +29,14 @@ namespace Business
         public void RemoveAddress(Address address)
         {
         //    IAddressSvc addressSvc = (IAddressSvc)GetService("AddressSvcRepoImpl");
+
+            List<Person> peopleCollecton = personSvc.RetrievePeople("Address_AddressId", (int?)address.AddressId).ToList<Person>();
+            foreach (Person _person in peopleCollecton)
+            {
+                _person.Address_AddressId = null;
+                personSvc.ModifyPerson(_person);
+            }
+            
             addressSvc.RemoveAddress(address);
 
         }

@@ -1,0 +1,71 @@
+﻿@model DAL.CreditCard
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CreditCard</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreditCardNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreditCardNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CardType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CardType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Limit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Limit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Balance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Balance)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExpirationMonth)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExpirationMonth)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExpirationYear)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExpirationYear)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreditCardUser.PersonId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreditCardUser.PersonId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Account.AccountId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Account.AccountId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CreditCardId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

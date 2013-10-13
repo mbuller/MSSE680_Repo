@@ -17,6 +17,9 @@ namespace Service
         Person RetrievePerson(String DBColumnName, int? NullableIntValue);
         ICollection<Person> RetrieveAllPeople();
 
+        ICollection<Person> RetrievePeople(String DBColumnName, int? NullableIntValue);
+        ICollection<Person> RetrievePeople(String DBColumnName, int NullableIntValue);
+
         void AddAddressToPerson(Address Address, Person Person);
         void RemoveAddressFromPerson(Address Address, Person Person);
 

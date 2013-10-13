@@ -44,6 +44,15 @@ namespace Service
             return AccountRepo.GetBySpecificKey(DBColumnName, NullableIntValue).FirstOrDefault<Account>();
         }
 
+        public ICollection<Account> RetrieveAccounts(String DBColumnName, int NullableIntValue)
+        {
+            return AccountRepo.GetBySpecificKey(DBColumnName, NullableIntValue).ToList<Account>();
+        }
+        public ICollection<Account> RetrieveAccounts(String DBColumnName, int? NullableIntValue)
+        {
+            return AccountRepo.GetBySpecificKey(DBColumnName, NullableIntValue).ToList<Account>();
+        }
+
         public ICollection<Account> RetrieveAllAccounts()
         {
             return AccountRepo.GetAll().ToList<Account>();

@@ -29,7 +29,6 @@ namespace DAL
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.UserName = UserName;
-            this.Password = "Password1";
             this.Address = Address;
             this.Address_AddressId = Address.AddressId;
         }
@@ -52,36 +51,10 @@ namespace DAL
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.UserName = UserName;
-            this.Password = "Password1";
             this.Address = Address;
             this.Address_AddressId = Address.AddressId;
         }
 
-        /**
-        * byte Age
-        * String FirstName
-        * String LastName
-        * String Password
-        * Address Address
-        */
-        public Person(
-                    byte Age,
-                    String FirstName,
-                    String LastName,
-                    String UserName,
-                    String Password,
-                    byte Permissions,
-                    Address Address)
-        {
-            this.Age = Age;
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.UserName = UserName;
-            this.Password = Password;
-            this.Permissions = Permissions;
-            this.Address = Address;
-            this.Address_AddressId = Address.AddressId;
-        }
 
         /**
          * byte Age
@@ -94,48 +67,14 @@ namespace DAL
                     byte Age,
                     String FirstName,
                     String LastName,
-                    String UserName,
-                    String Password,
-                    byte Permissions)
+                    String UserName
+            )
         {
 
             this.Age = Age;
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.UserName = UserName;
-            this.Password = Password;
-            this.Permissions = Permissions;
-        }
-
-        /**
-         * int PersonId
-         * byte Age
-         * String FirstName
-         * String LastName
-         * String UserName
-         * String Password
-         * Address Address
-         */
-        public Person(
-                    int PersonId,
-                    byte Age,
-                    String FirstName,
-                    String LastName,
-                    String UserName,
-                    String Password,
-                    byte Permissions,
-                    Address Address)
-        {
-
-            this.PersonId = PersonId;
-            this.Age = Age;
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.UserName = UserName;
-            this.Password = Password;
-            this.Permissions = Permissions;
-            this.Address = Address;
-            this.Address_AddressId = Address.AddressId;
         }
 
         /**
@@ -158,10 +97,6 @@ namespace DAL
                 return false;
             }
             if (UserName == null)
-            {
-                return false;
-            }
-            if (Password == null)
             {
                 return false;
             }

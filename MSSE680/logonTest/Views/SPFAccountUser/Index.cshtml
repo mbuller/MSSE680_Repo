@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DAL.Account>
+
+@{
+    ViewBag.Title = "Accounts";
+}
+
+<h2>Accounts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditCard.CreditCardId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountUser.PersonId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Limit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Balance)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditCard.CreditCardId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountUser.PersonId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Limit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Balance)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AccountId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AccountId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AccountId })
+        </td>
+    </tr>
+}
+
+</table>

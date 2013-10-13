@@ -21,12 +21,10 @@ namespace DAL
         }
     
         public int PersonId { get; set; }
-        public byte Age { get; set; }
+        public Nullable<byte> Age { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
-        public string Password { get; set; }
-        public byte Permissions { get; set; }
         public Nullable<int> Address_AddressId { get; set; }
     
         public virtual ICollection<Account> Accounts { get; set; }

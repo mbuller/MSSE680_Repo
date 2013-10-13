@@ -137,7 +137,7 @@ namespace DALUnitTest
         public void testPersonValidateTrue()
         {
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-            Person Person1 = new Person(25, (byte)30, "Matthew", "Buller", "mbuller", "Password1", (byte)1, Address1);
+            Person Person1 = new Person(25, (byte)30, "Matthew", "Buller", "mbuller", Address1);
 
             Assert.IsTrue(Person1.validate(), "testPersonValidateTrue Passed");
         }
@@ -150,7 +150,7 @@ namespace DALUnitTest
         {
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
 
-            Person Person1 = new Person(25, (byte)30, null, "Buller", "mbuller", "Password1", (byte)1, Address1);
+            Person Person1 = new Person(25, (byte)30, null, "Buller", "mbuller", Address1);
 
 
             Assert.IsFalse(Person1.validate(), "testPersonValidateTrue Passed");
@@ -168,7 +168,7 @@ namespace DALUnitTest
 //            personIdVal = (personIdVal == null) ? personIdVal : 1;
             
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, "Password1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, Address1);
             db.People.Add(Person1);
             db.SaveChanges();
         }
@@ -185,7 +185,7 @@ namespace DALUnitTest
 
             var personIdVal = (db.People.Max(id => (int?)id.PersonId) >= 0) ? (db.People.Max(id => id.PersonId) + 1) : 1;
             
-            Person Person1 = new Person((byte)30, "MatthewDel", "Buller", "mbuller_" + personIdVal, "Password1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewDel", "Buller", "mbuller_" + personIdVal, Address1);
             db.People.Add(Person1);
             
             
@@ -210,7 +210,7 @@ namespace DALUnitTest
 
             var PersonRepo = new DataRepository<Person>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewInsertRepo1", "BullerInsertRepo1", "mbullerInsertRepo1_" + personIdVal, "PasswordInsertRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewInsertRepo1", "BullerInsertRepo1", "mbullerInsertRepo1_" + personIdVal,  Address1);
             PersonRepo.Insert(Person1);
 
         }
@@ -226,7 +226,7 @@ namespace DALUnitTest
 
             var PersonRepo = new DataRepository<Person>();
             Address Address2 = new Address(2, "WichitaRepo", "2222 ShockerRepo Drive", "KS", 67222);
-            Person Person2 = new Person((byte)30, "MatthewRetRepo2", "BullerRetRepo2", "mbullerRetRepo2_" + personIdVal, "Password1RetRepo2", (byte)2, Address2);
+            Person Person2 = new Person((byte)30, "MatthewRetRepo2", "BullerRetRepo2", "mbullerRetRepo2_" + personIdVal, Address2);
 
             PersonRepo.Insert(Person2);
 
@@ -245,7 +245,7 @@ namespace DALUnitTest
 
             var PersonRepo = new DataRepository<Person>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal, "PasswordRetAllRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal,  Address1);
 
             List<Person> myList = PersonRepo.GetAll().ToList<Person>();
             Assert.IsTrue(myList.Count > 0);
@@ -263,7 +263,7 @@ namespace DALUnitTest
 
             var PersonRepo = new DataRepository<Person>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal, "PasswordRetAllRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal,  Address1);
             PersonRepo.Insert(Person1);
 
             PersonRepo.Delete(Person1);
@@ -280,7 +280,7 @@ namespace DALUnitTest
 
             var PersonRepo = new DataRepository<Person>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewModRep1", "BullerModRepo1", "mbullerModRepo_" + personIdVal, "PasswordModRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewModRep1", "BullerModRepo1", "mbullerModRepo_" + personIdVal,  Address1);
             PersonRepo.Insert(Person1);
 
             Person1.FirstName = "ModifiedFirstName";
@@ -298,7 +298,7 @@ namespace DALUnitTest
         public void testCreditCardValidateTrue()
         {
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-            Person Person1 = new Person(25, (byte)30, "Matthew", "Buller", "mbuller", "Password1", (byte)1, Address1);
+            Person Person1 = new Person(25, (byte)30, "Matthew", "Buller", "mbuller", Address1);
             CreditCard CreditCard1 = new CreditCard(15, 900000000000L , 10000, 700, 1, (byte)2, (byte)3, Person1);
 
             Assert.IsTrue(CreditCard1.validate(), "testCreditCardValidateTrue Passed");
@@ -329,7 +329,7 @@ namespace DALUnitTest
             var personIdVal = (db.People.Max(id => (int?)id.PersonId) >= 0) ? (db.People.Max(id => id.PersonId) + 1) : 1;
             var CreditCardIdVal = (db.CreditCards.Max(id => (int?)id.CreditCardId) >= 0) ? (db.CreditCards.Max(id => id.CreditCardId) + 1) : 1;
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, "Password1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
 
             db.CreditCards.Add(CreditCard1);
@@ -348,7 +348,7 @@ namespace DALUnitTest
             var CreditCardIdVal = (db.CreditCards.Max(id => (int?)id.CreditCardId) >= 0) ? (db.CreditCards.Max(id => id.CreditCardId) + 1) : 1;
 
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, "Password1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 5555, 700, 1, (byte)2, (byte)3);
             db.CreditCards.Add(CreditCard1);
             db.SaveChanges();
@@ -370,7 +370,7 @@ namespace DALUnitTest
 
             var CreditCardRepo = new DataRepository<CreditCard>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewInsertRepo1", "BullerInsertRepo1", "mbullerInsertRepo1_" + personIdVal, "PasswordInsertRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewInsertRepo1", "BullerInsertRepo1", "mbullerInsertRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             CreditCardRepo.Insert(CreditCard1);
 
@@ -388,12 +388,12 @@ namespace DALUnitTest
 
             var CreditCardRepo = new DataRepository<CreditCard>();
             Address Address2 = new Address(2, "WichitaRepo", "2222 ShockerRepo Drive", "KS", 67222);
-            Person Person2 = new Person((byte)30, "MatthewRetRepo2", "BullerRetRepo2", "mbullerRetRepo2_" + personIdVal, "Password1RetRepo2", (byte)2, Address2);
+            Person Person2 = new Person((byte)30, "MatthewRetRepo2", "BullerRetRepo2", "mbullerRetRepo2_" + personIdVal, Address2);
             CreditCard CreditCard2 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person2);
             CreditCardRepo.Insert(CreditCard2);
 
             CreditCard CreditCard1 = CreditCardRepo.GetBySpecificKey("Limit", 10000).FirstOrDefault<CreditCard>();
-            Assert.IsTrue(CreditCard1.validate());
+            Assert.IsTrue(CreditCard1 != null);
         }
 
         /// <summary>
@@ -408,7 +408,7 @@ namespace DALUnitTest
 
             var CreditCardRepo = new DataRepository<CreditCard>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal, "PasswordRetAllRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             CreditCardRepo.Insert(CreditCard1);
 
@@ -428,7 +428,7 @@ namespace DALUnitTest
 
             var CreditCardRepo = new DataRepository<CreditCard>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal, "PasswordRetAllRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 66666, 666, 1, (byte)2, (byte)3, Person1);
             CreditCardRepo.Insert(CreditCard1);
 
@@ -447,7 +447,7 @@ namespace DALUnitTest
 
             var CreditCardRepo = new DataRepository<CreditCard>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewModRep1", "BullerModRepo1", "mbullerModRepo1_" + personIdVal, "PasswordModRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewModRep1", "BullerModRepo1", "mbullerModRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             CreditCardRepo.Insert(CreditCard1);
 
@@ -467,7 +467,7 @@ namespace DALUnitTest
         {
         
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-            Person Person1 = new Person(25, (byte)30, "Matthew", "Buller", "mbuller", "Password1", (byte)1, Address1);
+            Person Person1 = new Person(25, (byte)30, "Matthew", "Buller", "mbuller", Address1);
             CreditCard CreditCard1 = new CreditCard(15, 900000000000L, 10000, 700, 1, (byte)2, (byte)3, Person1);
 
             Account Account1 = new Account(3,CreditCard1,Person1,2000,200);
@@ -483,7 +483,7 @@ namespace DALUnitTest
         public void testAccountValidateFalse()
         {
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-            Person Person1 = new Person(25, (byte)30, "Matthew", "Buller", "mbuller", "Password1", (byte)1, Address1);
+            Person Person1 = new Person(25, (byte)30, "Matthew", "Buller", "mbuller", Address1);
             CreditCard CreditCard1 = new CreditCard(15, 900000000000L, 10000, 700, 1, (byte)2, (byte)3, Person1);
 
             Account Account1 = new Account(-1, CreditCard1, Person1);
@@ -503,7 +503,7 @@ namespace DALUnitTest
             var CreditCardIdVal = (db.CreditCards.Max(id => (int?)id.CreditCardId) >= 0) ? (db.CreditCards.Max(id => id.CreditCardId) + 1) : 1;
 
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, "Password1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 2000, 200);
 
@@ -524,7 +524,7 @@ namespace DALUnitTest
             var CreditCardIdVal = (db.CreditCards.Max(id => (int?)id.CreditCardId) >= 0) ? (db.CreditCards.Max(id => id.CreditCardId) + 1) : 1;
 
                      Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-                   Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, "Password1", (byte)1, Address1);
+                   Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, Address1);
                    CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
                    Account Account1 = new Account(CreditCard1, Person1, 3333, 200);
                    db.Accounts.Add(Account1);
@@ -547,7 +547,7 @@ namespace DALUnitTest
 
             var AccountRepo = new DataRepository<Account>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewInsertRepo1", "BullerInsertRepo1", "mbullerInsertRepo1_" + personIdVal, "PasswordInsertRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewInsertRepo1", "BullerInsertRepo1", "mbullerInsertRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 2000, 200);
             AccountRepo.Insert(Account1);
@@ -566,7 +566,7 @@ namespace DALUnitTest
 
             var AccountRepo = new DataRepository<Account>();
             Address Address1 = new Address(2, "WichitaRetRepo", "2222 ShockerRetRepo Drive", "KS", 67222);
-            Person Person1 = new Person((byte)30, "MatthewRetRepo2", "BullerRetRepo2", "mbullerRetRepo2_" + personIdVal, "Password1RetRepo2", (byte)2, Address1);
+            Person Person1 = new Person((byte)30, "MatthewRetRepo2", "BullerRetRepo2", "mbullerRetRepo2_" + personIdVal, Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 2000, 200);
             AccountRepo.Insert(Account1);
@@ -588,7 +588,7 @@ namespace DALUnitTest
 
             var AccountRepo = new DataRepository<Account>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal, "PasswordRetAllRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 2000, 200);
             AccountRepo.Insert(Account1);
@@ -610,7 +610,7 @@ namespace DALUnitTest
 
             var AccountRepo = new DataRepository<Account>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal, "PasswordRetAllRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 6666, 666);
             AccountRepo.Insert(Account1);
@@ -631,7 +631,7 @@ namespace DALUnitTest
 
             var AccountRepo = new DataRepository<Account>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewModRep1", "BullerModRepo1", "mbullerModRepo1_" + personIdVal, "PasswordModRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewModRep1", "BullerModRepo1", "mbullerModRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 2000, 200);
             AccountRepo.Insert(Account1);
@@ -651,7 +651,7 @@ namespace DALUnitTest
         public void testTransactionValidateTrue()
         {
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-            Person Person1 = new Person(25, (byte)30, "Matthew", "Buller", "mbuller", "Password1", (byte)1, Address1);
+            Person Person1 = new Person(25, (byte)30, "Matthew", "Buller", "mbuller", Address1);
             CreditCard CreditCard1 = new CreditCard(15, 900000000000L, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(3,CreditCard1,Person1,2000,200);
 
@@ -683,7 +683,7 @@ namespace DALUnitTest
             var CreditCardIdVal = (db.CreditCards.Max(id => (int?)id.CreditCardId) >= 0) ? (db.CreditCards.Max(id => id.CreditCardId) + 1) : 1;
 
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, "Password1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 2000, 200);
             Transaction Transaction1 = new Transaction(200, 2, 3, 13, "ABC", CreditCard1);
@@ -704,7 +704,7 @@ namespace DALUnitTest
             var CreditCardIdVal = (db.CreditCards.Max(id => (int?)id.CreditCardId) >= 0) ? (db.CreditCards.Max(id => id.CreditCardId) + 1) : 1;
 
             Address Address1 = new Address(2, "Wichita", "5856 Shocker Drive", "KS", 67219);
-            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, "Password1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "Matthew", "Buller", "mbuller_" + personIdVal, Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 3333, 200);
             Transaction Transaction1 = new Transaction(200, 2, 3, 13, "DeleteMe", CreditCard1);
@@ -729,7 +729,7 @@ namespace DALUnitTest
 
             var TransactionRepo = new DataRepository<Transaction>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewInsertRepo1", "BullerInsertRepo1", "mbullerInsertRepo1_" + personIdVal, "PasswordInsertRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewInsertRepo1", "BullerInsertRepo1", "mbullerInsertRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 2000, 200);
             Transaction Transaction1 = new Transaction(5, 200, 2, 3, 13, "ABC", CreditCard1);
@@ -749,7 +749,7 @@ namespace DALUnitTest
 
             var TransactionRepo = new DataRepository<Transaction>();
             Address Address1 = new Address(2, "WichitaRetRepo", "2222 ShockerRetRepo Drive", "KS", 67222);
-            Person Person1 = new Person((byte)30, "MatthewRetRepo2", "BullerRetRepo2", "mbullerRetRepo2_" + personIdVal, "Password1RetRepo2", (byte)2, Address1);
+            Person Person1 = new Person((byte)30, "MatthewRetRepo2", "BullerRetRepo2", "mbullerRetRepo2_" + personIdVal, Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 2000, 200);
             Transaction Transaction1 = new Transaction(5, 200, 2, 3, 13, "FindMe", CreditCard1);
@@ -772,7 +772,7 @@ namespace DALUnitTest
 
             var TransactionRepo = new DataRepository<Transaction>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal, "PasswordRetAllRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 2000, 200);
             Transaction Transaction1 = new Transaction(5, 200, 2, 3, 13, "ABC", CreditCard1);
@@ -795,7 +795,7 @@ namespace DALUnitTest
 
             var TransactionRepo = new DataRepository<Transaction>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal, "PasswordRetAllRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewRetAllRep1", "BullerInsertRetAllRepo1", "mbullerRetAllRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 6666, 666);
             Transaction Transaction1 = new Transaction(5, 200, 2, 3, 13, "DeleteMeRepo", CreditCard1);
@@ -817,7 +817,7 @@ namespace DALUnitTest
 
             var TransactionRepo = new DataRepository<Transaction>();
             Address Address1 = new Address(2, "Wichita", "1111 Shocker Drive", "KS", 67111);
-            Person Person1 = new Person((byte)30, "MatthewModRep1", "BullerModRepo1", "mbullerModRepo1_" + personIdVal, "PasswordModRepo1", (byte)1, Address1);
+            Person Person1 = new Person((byte)30, "MatthewModRep1", "BullerModRepo1", "mbullerModRepo1_" + personIdVal,  Address1);
             CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 10000, 700, 1, (byte)2, (byte)3, Person1);
             Account Account1 = new Account(CreditCard1, Person1, 2000, 200);
             Transaction Transaction1 = new Transaction(5, 200, 2, 3, 13, "ABC", CreditCard1);

@@ -45,6 +45,15 @@ namespace Service
             return PersonRepo.GetBySpecificKey(DBColumnName, NullableIntValue).FirstOrDefault<Person>();
         }
 
+        public ICollection<Person> RetrievePeople(String DBColumnName, int? NullableIntValue)
+        {
+            return PersonRepo.GetBySpecificKey(DBColumnName, NullableIntValue).ToList<Person>();
+        }
+        public ICollection<Person> RetrievePeople(String DBColumnName, int IntValue)
+        {
+            return PersonRepo.GetBySpecificKey(DBColumnName, IntValue).ToList<Person>();
+        }
+
         public ICollection<Person> RetrieveAllPeople()
         {
             return PersonRepo.GetAll().ToList<Person>();

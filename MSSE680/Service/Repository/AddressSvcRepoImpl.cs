@@ -45,6 +45,14 @@ namespace Service
 
             return AddressRepo.GetBySpecificKey(DBColumnName, NullableIntValue).FirstOrDefault<Address>();
         }
+        public ICollection<Address> RetrieveAddresses(String DBColumnName, int NullableIntValue)
+        {
+            return AddressRepo.GetBySpecificKey(DBColumnName, NullableIntValue).ToList<Address>();
+        }
+        public ICollection<Address> RetrieveAddresses(String DBColumnName, int? NullableIntValue)
+        {
+            return AddressRepo.GetBySpecificKey(DBColumnName, NullableIntValue).ToList<Address>();
+        }
         
         public ICollection<Address> RetrieveAllAddresses()
         {

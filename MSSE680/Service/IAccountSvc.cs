@@ -18,6 +18,9 @@ namespace Service
         Account RetrieveAccount(String DBColumnName, int? NullableIntValue);
         ICollection<Account> RetrieveAllAccounts();
 
+        ICollection<Account> RetrieveAccounts(String DBColumnName, int? NullableIntValue);
+        ICollection<Account> RetrieveAccounts(String DBColumnName, int NullableIntValue);
+
         void AddCreditCardToAccount(CreditCard CreditCard, Account Account);
         void RemoveCreditCardFromAccount(CreditCard CreditCard, Account Account);
 

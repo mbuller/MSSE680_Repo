@@ -1,0 +1,57 @@
+﻿@model DAL.Transaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Transaction</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Amount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Amount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransactionDay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransactionDay)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransactionMonth)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransactionMonth)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransactionYear)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransactionYear)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BusinessName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BusinessName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreditCard.CreditCardId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreditCard.CreditCardId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TransactionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

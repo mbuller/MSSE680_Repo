@@ -11,21 +11,59 @@ namespace Business
     public class AccountMgr : Manager
     {
         public IAccountSvc accountSvc;
+        public ICreditCardSvc creditCardSvc;
 
         public AccountMgr()
         {
             accountSvc = (IAccountSvc)GetService("AccountSvcRepoImpl");
+            creditCardSvc = (ICreditCardSvc)GetService("CreditCardSvcRepoImpl");
         }
 
         public void CreateAccount(Account account)
         {
        //     IAccountSvc accountSvc = (IAccountSvc)GetService("AccountSvcRepoImpl");
-            accountSvc.CreateAccount(account);
+            
+            //check if the account has a CreditCard_CreditCardId set
+            if (account.CreditCard_CreditCardId != null)
+            {
+                CreditCard creditCard = creditCardSvc.RetrieveCreditCard("CreditCardId", (int)account.CreditCard_CreditCardId);
+                if (creditCard == null || creditCard.CardType != 1)
+                {
+                    account.CreditCard_CreditCardId = null;
+                    accountSvc.CreateAccount(account);
+                }
+                //check to make sure that the CreditCard type is  "1" before setting accounts CreditCard_CreditCardId to this credit card
+                else if (creditCard.CardType == 1)
+                {
+                    accountSvc.CreateAccount(account);
+                    creditCard.Account_AccountId = account.AccountId;
+                    creditCardSvc.ModifyCreditCard(creditCard);
+                }
+                //if it is not, then set CreditCard_CreditCardId to a null value and then create account... 
+                //this really should throw an error stating that the value being passed in has invalid CreditCard_CreditCardId
+                else
+                {
+                    throw new System.InvalidOperationException("AccontMgr error when creting account");
+                   // account.CreditCard_CreditCardId =null;
+                    //accountSvc.CreateAccount(account);
+                }
+            }
+            else
+            {
+                accountSvc.CreateAccount(account);
+            }
         }
 
         public void RemoveAccount(Account account)
         {
      //       IAccountSvc accountSvc = (IAccountSvc)GetService("AccountSvcRepoImpl");
+            List<CreditCard> creditcardCollecton = creditCardSvc.RetrieveCreditCards("Account_AccountId", (int?)account.AccountId).ToList<CreditCard>();
+            foreach (CreditCard _creditcard in creditcardCollecton)
+            {
+                _creditcard.Account_AccountId = null;
+                creditCardSvc.ModifyCreditCard(_creditcard);
+            }
+            
             accountSvc.RemoveAccount(account);
 
         }
@@ -33,7 +71,41 @@ namespace Business
         public void ModifyAccount(Account account)
         {
       //      IAccountSvc accountSvc = (IAccountSvc)GetService("AccountSvcRepoImpl");
-            accountSvc.ModifyAccount(account);
+     //        Account origAccount = accountSvc.RetrieveAccount("CreditCard_CreditCardId",account.CreditCard_CreditCardId);
+
+
+             //check if the "modified" account has a CreditCard_CreditCardId set
+            if (account.CreditCard_CreditCardId != null)
+            {
+                CreditCard creditCard = creditCardSvc.RetrieveCreditCard("CreditCardId", (int)account.CreditCard_CreditCardId);
+
+                //check to make sure that the CreditCard type is  "1" before setting accounts CreditCard_CreditCardId to this credit card
+                if (creditCard.CardType == 1)
+                {
+                    accountSvc.ModifyAccount(account);
+                    creditCard.Account_AccountId = account.AccountId;
+                    creditCardSvc.ModifyCreditCard(creditCard);
+                }
+                //if it is not, then set CreditCard_CreditCardId back to the orignal value and make the remaining modifcations... 
+                //this really should throw an error stating that the value being passed in has invalid CreditCard_CreditCardId
+                else
+                {
+                   // account.CreditCard_CreditCardId = account.CreditCard_CreditCardId;
+                   // accountSvc.ModifyAccount(account);
+                    throw new System.InvalidOperationException("Cannot set the Account creditCard ID to a credit card that's cardType is not 1.");
+                }                    
+            }
+            //CreditCard_CreditCardId is null in account so make sure any credit card referencing it has its CreditCard_CreditCardId set to null
+            else
+            {
+                accountSvc.ModifyAccount(account);
+                List<CreditCard> creditcardCollecton = creditCardSvc.RetrieveCreditCards("Account_AccountId", (int?)account.AccountId).ToList<CreditCard>();
+                foreach (CreditCard _creditcard in creditcardCollecton)
+                {
+                    _creditcard.Account_AccountId = null;
+                    creditCardSvc.ModifyCreditCard(_creditcard);
+                }
+            }
         }
 
         public Account RetrieveAccount(String DBColumnName, String StringValue)
