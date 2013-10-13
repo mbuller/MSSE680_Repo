@@ -20,6 +20,7 @@
         <EntityTypeShape EntityType="bullerModel.webpages_OAuthMembership" Width="1.5" PointX="4.4330221807737935" PointY="2.0390060702520452" />
         <EntityTypeShape EntityType="bullerModel.webpages_Roles" Width="1.5" PointX="0.46256009324572989" PointY="21.193966502879732" />
         <AssociationConnector Association="bullerModel.webpages_UsersInRoles" />
+        <AssociationConnector Association="bullerModel.webpages_UsersInRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
