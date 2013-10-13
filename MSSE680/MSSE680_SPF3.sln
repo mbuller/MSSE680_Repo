@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceUnitTest", "ServiceU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessUnitTest", "BusinessUnitTest\BusinessUnitTest.csproj", "{034C5741-D8D9-488D-AAF9-C97D2B89DBAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "logonTest\MVC.csproj", "{4523AE1C-7FCC-48FB-918D-D5209E1E19D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{4523AE1C-7FCC-48FB-918D-D5209E1E19D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
