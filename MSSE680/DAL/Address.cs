@@ -23,8 +23,10 @@ namespace DAL
         public string City { get; set; }
         public string Street { get; set; }
         public string State { get; set; }
-        public int Zipcode { get; set; }
+        public Nullable<int> Zipcode { get; set; }
+        public Nullable<int> Person_PersonId { get; set; }
     
+        public virtual Person Person { get; set; }
         public virtual ICollection<Person> People { get; set; }
     }
 }

@@ -7,9 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Business;
+using logonTest.Filters;
+using WebMatrix.WebData;
 
 namespace logonTest.Controllers
 {
+    [InitializeSimpleMembership]
     [Authorize(Roles = "User")]
     public class TransactionUserController : Controller
     {
@@ -27,7 +30,8 @@ namespace logonTest.Controllers
         {
             //var transactions = db.Transactions.Include(t => t.CreditCard);
             //return View(transactions.ToList());
-            return View(transactionMgr.RetrieveAllTransactions().ToList());
+           // return View(transactionMgr.RetrieveAllTransactions().ToList());
+            return View(transactionMgr.RetrieveAccountTransactions("CreditCardUser_PersonId", (int?)WebSecurity.CurrentUserId));
         }
 
         //

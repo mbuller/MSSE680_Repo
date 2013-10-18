@@ -25,7 +25,7 @@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
 
-                            <li>@Html.ActionLink("User Profile", "Index", "PersonAdmin").If(User.IsInRole("admin"))</li>
+                           
                             <li>@Html.ActionLink("Addresses", "Index", "AddressAdmin").If(User.IsInRole("Admin"))</li>
                             <li>@Html.ActionLink("People", "Index", "PersonAdmin").If(User.IsInRole("Admin"))</li>
                             <li>@Html.ActionLink("CreditCards", "Index", "CreditCardAdmin").If(User.IsInRole("Admin"))</li>

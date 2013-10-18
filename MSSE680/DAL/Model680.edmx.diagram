@@ -4,24 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="081a4550376b4b30a5d958965dea72ff" Name="Diagram1">
-        <EntityTypeShape EntityType="bullerModel.Account" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="bullerModel.Address" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bullerModel.CreditCard" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="bullerModel.Person" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="bullerModel.Transaction" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="bullerModel.FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId" ManuallyRouted="false" />
-        <AssociationConnector Association="bullerModel.FK_dbo_Accounts_dbo_People_AccountUser_PersonId" ManuallyRouted="false" />
-        <AssociationConnector Association="bullerModel.FK_dbo_CreditCards_dbo_Accounts_Account_AccountId" ManuallyRouted="false" />
-        <AssociationConnector Association="bullerModel.FK_dbo_People_dbo_Addresses_Address_AddressId" ManuallyRouted="false" />
-        <AssociationConnector Association="bullerModel.FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId" ManuallyRouted="false" />
-        <AssociationConnector Association="bullerModel.FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId" ManuallyRouted="false" />
+      <Diagram DiagramId="081a4550376b4b30a5d958965dea72ff" Name="Diagram1" ZoomLevel="116">
         <EntityTypeShape EntityType="bullerModel.webpages_Membership" Width="1.5" PointX="1.5309976476854634" PointY="17.71757849385849" />
         <EntityTypeShape EntityType="bullerModel.webpages_OAuthMembership" Width="1.5" PointX="4.4330221807737935" PointY="2.0390060702520452" />
         <EntityTypeShape EntityType="bullerModel.webpages_Roles" Width="1.5" PointX="0.46256009324572989" PointY="21.193966502879732" />
         <AssociationConnector Association="bullerModel.webpages_UsersInRoles" />
         <AssociationConnector Association="bullerModel.webpages_UsersInRoles" />
-      </Diagram>
+        <AssociationConnector Association="bullerModel.webpages_UsersInRoles" />
+        <AssociationConnector Association="bullerModel.webpages_UsersInRoles" />
+        <EntityTypeShape EntityType="bullerModel.Account" Width="1.5" PointX="6.75" PointY="16.25" />
+        <EntityTypeShape EntityType="bullerModel.Address" Width="1.5" PointX="10" PointY="16.5" />
+        <EntityTypeShape EntityType="bullerModel.Person" Width="1.5" PointX="9.625" PointY="12.75" />
+        <EntityTypeShape EntityType="bullerModel.Transaction" Width="1.5" PointX="16.25" PointY="17.25" />
+        <AssociationConnector Association="bullerModel.FK_dbo_Accounts_dbo_People_AccountUser_PersonId" />
+        <AssociationConnector Association="bullerModel.FK_dbo_Addresses_dbo_People_Person_PersonId" />
+        <AssociationConnector Association="bullerModel.FK_dbo_People_dbo_Addresses_Address_AddressId" />
+        <EntityTypeShape EntityType="bullerModel.CreditCard" Width="1.5" PointX="14.25" PointY="16.375" />
+        <AssociationConnector Association="bullerModel.FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId" />
+        <AssociationConnector Association="bullerModel.FK_dbo_CreditCards_dbo_Accounts_Account_AccountId" />
+        <AssociationConnector Association="bullerModel.FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId" />
+        <AssociationConnector Association="bullerModel.FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

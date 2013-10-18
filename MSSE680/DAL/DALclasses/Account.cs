@@ -12,6 +12,12 @@ namespace DAL
     public partial class Account
     {
 
+        public Account(
+           int accountUser_PersonId)
+        {
+            this.AccountUser_PersonId = accountUser_PersonId;
+        }
+
         /**
          * AccountUser AccountUser
          * CreditCard CreditCard

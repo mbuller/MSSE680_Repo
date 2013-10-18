@@ -23,7 +23,37 @@ namespace Business
         public void CreateAddress(Address address)
         {
         //    IAddressSvc addressSvc = (IAddressSvc)GetService("AddressSvcRepoImpl");
-            addressSvc.CreateAddress(address);
+            //addressSvc.CreateAddress(address);
+            //check if the account has a CreditCard_CreditCardId set
+            if (address.Person_PersonId != null)
+            {
+                Person person = personSvc.RetrievePerson("PersonId", (int)address.Person_PersonId);
+                if (person == null)
+                {
+                    address.Person_PersonId = null;
+                    addressSvc.CreateAddress(address);
+                }
+                //check to make sure that the CreditCard type is  "1" before setting accounts CreditCard_CreditCardId to this credit card
+                else if (person != null)
+                {
+                    addressSvc.CreateAddress(address);
+                    person.Address_AddressId = address.AddressId;
+                    personSvc.ModifyPerson(person);
+                }
+                //if it is not, then set CreditCard_CreditCardId to a null value and then create account... 
+                //this really should throw an error stating that the value being passed in has invalid CreditCard_CreditCardId
+                else
+                {
+                    throw new System.InvalidOperationException("AddressMgr error when creating address");
+                    // account.CreditCard_CreditCardId =null;
+                    //accountSvc.CreateAccount(account);
+                }
+            }
+            else
+            {
+                addressSvc.CreateAddress(address);
+            }
+
         }
 
         public void RemoveAddress(Address address)
@@ -44,7 +74,36 @@ namespace Business
         public void ModifyAddress(Address address)
         {
         //    IAddressSvc addressSvc = (IAddressSvc)GetService("AddressSvcRepoImpl");
-            addressSvc.ModifyAddress(address);
+            //addressSvc.ModifyAddress(address);
+
+            if (address.Person_PersonId != null)
+            {
+                Person person = personSvc.RetrievePerson("PersonId", (int)address.Person_PersonId);
+                if (person == null)
+                {
+                    address.Person_PersonId = null;
+                    addressSvc.ModifyAddress(address);
+                }
+                //check to make sure that the CreditCard type is  "1" before setting accounts CreditCard_CreditCardId to this credit card
+                else if (person != null)
+                {
+                    addressSvc.ModifyAddress(address);
+                    person.Address_AddressId = address.AddressId;
+                    personSvc.ModifyPerson(person);
+                }
+                //if it is not, then set CreditCard_CreditCardId to a null value and then create account... 
+                //this really should throw an error stating that the value being passed in has invalid CreditCard_CreditCardId
+                else
+                {
+                    throw new System.InvalidOperationException("AddressMgr error when creating address");
+                    // account.CreditCard_CreditCardId =null;
+                    //accountSvc.CreateAccount(account);
+                }
+            }
+            else
+            {
+                addressSvc.ModifyAddress(address);
+            }
         }
 
         public Address RetrieveAddress(String DBColumnName, String StringValue)

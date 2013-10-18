@@ -1,14 +1,12 @@
-﻿@model IEnumerable<DAL.Address>
+﻿@model DAL.Address
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Address";
 }
 
-<h2>Index</h2>
+<h2>Address</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table>
     <tr>
         <th>
@@ -26,26 +24,23 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.City)
+            @Html.DisplayFor(modelItem => Model.City)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Street)
+            @Html.DisplayFor(modelItem => Model.Street)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.State)
+            @Html.DisplayFor(modelItem => Model.State)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Zipcode)
+            @Html.DisplayFor(modelItem => Model.Zipcode)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AddressId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AddressId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AddressId })
+            @Html.ActionLink("Edit", "Edit", new { id=Model.AddressId }) 
         </td>
     </tr>
-}
+
 
 </table>

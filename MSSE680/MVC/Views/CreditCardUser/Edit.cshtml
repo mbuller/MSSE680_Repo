@@ -1,10 +1,10 @@
 ﻿@model DAL.CreditCard
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Credit Card";
 }
 
-<h2>Edit</h2>
+<h2>Edit Credit Card</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -14,21 +14,32 @@
         <legend>CreditCard</legend>
 
         @Html.HiddenFor(model => model.CreditCardId)
+        @Html.HiddenFor(model => model.CreditCardUser_PersonId)
+        @Html.HiddenFor(model => model.Account_AccountId)
+        @Html.HiddenFor(model => model.CardType)
+        @Html.HiddenFor(model => model.CardType)
+        @Html.HiddenFor(model => model.CreditCardNumber)
+        @Html.HiddenFor(model => model.Balance)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.CreditCardNumber)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.CreditCardNumber)
-            @Html.ValidationMessageFor(model => model.CreditCardNumber)
+             @Html.DisplayFor(model => model.CreditCardNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Balance)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Balance)
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.CardType)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.CardType)
-            @Html.ValidationMessageFor(model => model.CardType)
+            @Html.DisplayFor(model => model.CardType)
         </div>
 
         <div class="editor-label">
@@ -37,14 +48,6 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Limit)
             @Html.ValidationMessageFor(model => model.Limit)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Balance)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Balance)
-            @Html.ValidationMessageFor(model => model.Balance)
         </div>
 
         <div class="editor-label">
@@ -61,22 +64,6 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.ExpirationYear)
             @Html.ValidationMessageFor(model => model.ExpirationYear)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CreditCardUser_PersonId, "PersonId")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("CreditCardUser_PersonId", String.Empty)
-            @Html.ValidationMessageFor(model => model.CreditCardUser_PersonId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Account_AccountId, "AccountId")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("Account_AccountId", String.Empty)
-            @Html.ValidationMessageFor(model => model.Account_AccountId)
         </div>
 
         <p>

@@ -204,7 +204,7 @@ namespace BusinessUnitTest
 
             Address Address1 = new Address("CreditCardServiceCityCreate", "CreditCardServiceStreetCreate", "KS", 55555);
             Person Person1 = new Person((byte)25, "CreditCardServiceFirstNameCreate_" + personIdVal, "CreditCardServiceLastNameCreate_" + personIdVal, "CreditCardServiceUserNameCreate_" + personIdVal, Address1);
-            CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 7100, 710, 1, (byte)1, (byte)1, Person1);
+            CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 5555, 700, 1, (byte)2, (byte)3);
 
             new CreditCardMgr().CreateCreditCard(CreditCard1);
         }
@@ -222,7 +222,7 @@ namespace BusinessUnitTest
 
             Address Address1 = new Address("CreditCardServiceCityRemove", "CreditCardServiceStreetRemove", "KS", 55555);
             Person Person1 = new Person((byte)25, "CreditCardServiceFirstNameRemove_" + personIdVal, "CreditCardServiceLastNameRemove_" + personIdVal, "CreditCardServiceUserNameRemove_" + personIdVal, Address1);
-            CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 7200, 720, 2, (byte)2, (byte)2, Person1);
+            CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 5555, 700, 1, (byte)2, (byte)3);
 
             new CreditCardMgr().CreateCreditCard(CreditCard1);
 
@@ -243,7 +243,7 @@ namespace BusinessUnitTest
 
             Address Address1 = new Address("CreditCardServiceCityModify", "CreditCardServiceStreetModify", "KS", 55555);
             Person Person1 = new Person((byte)25, "CreditCardServiceFirstNameModify_" + personIdVal, "CreditCardServiceLastNameModify_" + personIdVal, "CreditCardServiceUserNameModify_" + personIdVal, Address1);
-            CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 7300, 730, 3, (byte)3, (byte)3, Person1);
+            CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 5555, 700, 1, (byte)2, (byte)3);
 
             new CreditCardMgr().CreateCreditCard(CreditCard1);
 
@@ -265,13 +265,13 @@ namespace BusinessUnitTest
 
             Address Address1 = new Address("CreditCardServiceCityRetrieve", "CreditCardServiceStreetRetrieve", "KS", 55555);
             Person Person1 = new Person((byte)25, "CreditCardServiceFirstNameRetrieve_" + personIdVal, "CreditCardServiceLastNameRetrieve_" + personIdVal, "CreditCardServiceUserNameRetrieve_" + personIdVal, Address1);
-            CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 7400, 740, 4, (byte)4, (byte)4, Person1);
+            CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 5555, 700, 1, (byte)2, (byte)3);
 
             new CreditCardMgr().CreateCreditCard(CreditCard1);
 
-            CreditCard CreditCard2 = new CreditCardMgr().RetrieveCreditCard("Limit", 7400);
+            CreditCard CreditCard2 = new CreditCardMgr().RetrieveCreditCard("Limit", (int?) 5555);
 
-            Assert.IsTrue(CreditCard2.validate());
+            Assert.IsTrue(CreditCard2 != null);
         }
 
 
@@ -288,7 +288,7 @@ namespace BusinessUnitTest
 
             Address Address1 = new Address("CreditCardServiceCityRetrieveAll", "CreditCardServiceStreetRetrieveAll", "KS", 55555);
             Person Person1 = new Person((byte)25, "CreditCardServiceFirstNameRetrieveAll_" + personIdVal, "CreditCardServiceLastNameRetrieveAll_" + personIdVal, "CreditCardServiceUserNameRetrieveAll_" + personIdVal, Address1);
-            CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 7400, 740, 4, (byte)4, (byte)4, Person1);
+            CreditCard CreditCard1 = new CreditCard(900000000000L + CreditCardIdVal, 5555, 700, 1, (byte)2, (byte)3);
 
             new CreditCardMgr().CreateCreditCard(CreditCard1);
 

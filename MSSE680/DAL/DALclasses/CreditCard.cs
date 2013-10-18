@@ -8,6 +8,11 @@ namespace DAL
 {
     public partial class CreditCard
     {
+        public CreditCard(
+                   int creditCardUser_PersonId)
+        {
+            this.CreditCardUser_PersonId = creditCardUser_PersonId;
+        }
 
         /**
          * int Limit
@@ -55,7 +60,7 @@ namespace DAL
             this.CardType = CardType;
             this.ExpirationMonth = ExpirationMonth;
             this.ExpirationYear = ExpirationYear;
-            this.CreditCardUser = CreditCardUser;
+          //  this.CreditCardUser = CreditCardUser;
             this.CreditCardUser_PersonId = CreditCardUser.PersonId;
         }
 
@@ -111,7 +116,7 @@ namespace DAL
             this.CardType = CardType;
             this.ExpirationMonth = ExpirationMonth;
             this.ExpirationYear = ExpirationYear;
-            this.CreditCardUser = CreditCardUser;
+         //   this.CreditCardUser = CreditCardUser;
             this.CreditCardUser_PersonId = CreditCardUser.PersonId;
         }
 
@@ -144,7 +149,7 @@ namespace DAL
             this.CardType = CardType;
             this.ExpirationMonth = ExpirationMonth;
             this.ExpirationYear = ExpirationYear;
-            this.CreditCardUser = CreditCardUser;
+     //       this.CreditCardUser = CreditCardUser;
             this.CreditCardUser_PersonId = CreditCardUser.PersonId;
         }
 
@@ -177,7 +182,7 @@ namespace DAL
             this.CardType = CardType;
             this.ExpirationMonth = ExpirationMonth;
             this.ExpirationYear = ExpirationYear;
-            this.CreditCardUser = CreditCardUser;
+           // this.CreditCardUser = CreditCardUser;
             this.Account = Account;
             this.CreditCardUser_PersonId = CreditCardUser.PersonId;
             this.Account_AccountId = Account.AccountId;
@@ -213,7 +218,7 @@ namespace DAL
             this.CardType = CardType;
             this.ExpirationMonth = ExpirationMonth;
             this.ExpirationYear = ExpirationYear;
-            this.CreditCardUser = CreditCardUser;
+        //    this.CreditCardUser = CreditCardUser;
             this.Account = Account;
             this.CreditCardUser_PersonId = CreditCardUser.PersonId;
             this.Account_AccountId = Account.AccountId;
@@ -257,9 +262,9 @@ namespace DAL
                         }
                     
                  if (CreditCardUser.validate() == false)
-                             {
-                                 return false;
-                             }
+                            {
+                                return false;
+                            }
                             
             return true;
         }

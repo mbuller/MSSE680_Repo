@@ -17,6 +17,7 @@ namespace DAL
         public Person()
         {
             this.Accounts = new HashSet<Account>();
+            this.Addresses = new HashSet<Address>();
             this.CreditCards = new HashSet<CreditCard>();
         }
     
@@ -28,6 +29,7 @@ namespace DAL
         public Nullable<int> Address_AddressId { get; set; }
     
         public virtual ICollection<Account> Accounts { get; set; }
+        public virtual ICollection<Address> Addresses { get; set; }
         public virtual Address Address { get; set; }
         public virtual ICollection<CreditCard> CreditCards { get; set; }
     }

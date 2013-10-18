@@ -7,21 +7,36 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Business;
+using logonTest.Filters;
+using WebMatrix.WebData;
 
 namespace logonTest.Controllers
 {
+    [InitializeSimpleMembership]
     [Authorize(Roles="User")]
     public class AddressUserController : Controller
     {
         private bullerEntities db = new bullerEntities();
         private AddressMgr addressMgr = new AddressMgr();
+        private PersonMgr personMgr = new PersonMgr();
         //
         // GET: /Address/
 
         public ActionResult Index()
         {
             //return View(db.Addresses.ToList());
-            return View(addressMgr.RetrieveAllAddresses().ToList());
+            //return View(addressMgr.RetrieveAllAddresses().ToList());
+            
+            Address address = addressMgr.RetrieveAddress("Person_PersonId", (int?)WebSecurity.CurrentUserId);
+            if (address == null)
+            {
+                //     return View();
+                // else
+                Address address2 = new Address(WebSecurity.CurrentUserId);
+                addressMgr.CreateAddress(address2);
+                
+            }
+            return View(addressMgr.RetrieveAddress("Person_PersonId", (int?)WebSecurity.CurrentUserId));
         }
 
         //
@@ -57,6 +72,7 @@ namespace logonTest.Controllers
             {
                 //db.Addresses.Add(address);
                 //db.SaveChanges();
+                address.Person_PersonId = WebSecurity.CurrentUserId;
                 addressMgr.CreateAddress(address);
                 return RedirectToAction("Index");
             }

@@ -5,273 +5,102 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="bullerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="bullerModelStoreContainer">
-    <EntitySet Name="Accounts" EntityType="bullerModel.Store.Accounts" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Addresses" EntityType="bullerModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="CreditCards" EntityType="bullerModel.Store.CreditCards" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="People" EntityType="bullerModel.Store.People" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Transactions" EntityType="bullerModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId" Association="bullerModel.Store.FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId">
-      <End Role="CreditCards" EntitySet="CreditCards" />
-      <End Role="Accounts" EntitySet="Accounts" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Accounts_dbo_People_AccountUser_PersonId" Association="bullerModel.Store.FK_dbo_Accounts_dbo_People_AccountUser_PersonId">
-      <End Role="People" EntitySet="People" />
-      <End Role="Accounts" EntitySet="Accounts" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_CreditCards_dbo_Accounts_Account_AccountId" Association="bullerModel.Store.FK_dbo_CreditCards_dbo_Accounts_Account_AccountId">
-      <End Role="Accounts" EntitySet="Accounts" />
-      <End Role="CreditCards" EntitySet="CreditCards" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_People_dbo_Addresses_Address_AddressId" Association="bullerModel.Store.FK_dbo_People_dbo_Addresses_Address_AddressId">
-      <End Role="Addresses" EntitySet="Addresses" />
-      <End Role="People" EntitySet="People" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId" Association="bullerModel.Store.FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId">
-      <End Role="People" EntitySet="People" />
-      <End Role="CreditCards" EntitySet="CreditCards" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId" Association="bullerModel.Store.FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId">
-      <End Role="CreditCards" EntitySet="CreditCards" />
-      <End Role="Transactions" EntitySet="Transactions" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Accounts">
-    <Key>
-      <PropertyRef Name="AccountId" />
-    </Key>
-    <Property Name="AccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CreditCard_CreditCardId" Type="int" Nullable="true" />
-    <Property Name="AccountUser_PersonId" Type="int" Nullable="true" />
-    <Property Name="Limit" Type="int" Nullable="false" />
-    <Property Name="Balance" Type="decimal" Nullable="false" Precision="10" Scale="4" />
-  </EntityType>
-  <EntityType Name="Addresses">
-    <Key>
-      <PropertyRef Name="AddressId" />
-    </Key>
-    <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Street" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Zipcode" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CreditCards">
-    <Key>
-      <PropertyRef Name="CreditCardId" />
-    </Key>
-    <Property Name="CreditCardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CreditCardNumber" Type="bigint" Nullable="false" />
-    <Property Name="CardType" Type="tinyint" Nullable="false" />
-    <Property Name="Limit" Type="int" Nullable="false" />
-    <Property Name="Balance" Type="decimal" Nullable="false" Precision="10" Scale="4" />
-    <Property Name="ExpirationMonth" Type="tinyint" Nullable="false" />
-    <Property Name="ExpirationYear" Type="tinyint" Nullable="false" />
-    <Property Name="CreditCardUser_PersonId" Type="int" Nullable="true" />
-    <Property Name="Account_AccountId" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="People">
-    <Key>
-      <PropertyRef Name="PersonId" />
-    </Key>
-    <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Age" Type="tinyint" Nullable="true" />
-    <Property Name="FirstName" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="LastName" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="UserName" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Address_AddressId" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Transactions">
-    <Key>
-      <PropertyRef Name="TransactionId" />
-    </Key>
-    <Property Name="TransactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Amount" Type="decimal" Nullable="false" Precision="10" Scale="4" />
-    <Property Name="TransactionDay" Type="tinyint" Nullable="false" />
-    <Property Name="TransactionMonth" Type="tinyint" Nullable="false" />
-    <Property Name="TransactionYear" Type="tinyint" Nullable="false" />
-    <Property Name="BusinessName" Type="nvarchar" Nullable="false" MaxLength="25" />
-    <Property Name="CreditCard_CreditCardId" Type="int" Nullable="true" />
-  </EntityType>
-  <Association Name="FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId">
-    <End Role="CreditCards" Type="bullerModel.Store.CreditCards" Multiplicity="0..1" />
-    <End Role="Accounts" Type="bullerModel.Store.Accounts" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CreditCards">
-        <PropertyRef Name="CreditCardId" />
-      </Principal>
-      <Dependent Role="Accounts">
-        <PropertyRef Name="CreditCard_CreditCardId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Accounts_dbo_People_AccountUser_PersonId">
-    <End Role="People" Type="bullerModel.Store.People" Multiplicity="0..1" />
-    <End Role="Accounts" Type="bullerModel.Store.Accounts" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="People">
-        <PropertyRef Name="PersonId" />
-      </Principal>
-      <Dependent Role="Accounts">
-        <PropertyRef Name="AccountUser_PersonId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_CreditCards_dbo_Accounts_Account_AccountId">
-    <End Role="Accounts" Type="bullerModel.Store.Accounts" Multiplicity="0..1" />
-    <End Role="CreditCards" Type="bullerModel.Store.CreditCards" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Accounts">
-        <PropertyRef Name="AccountId" />
-      </Principal>
-      <Dependent Role="CreditCards">
-        <PropertyRef Name="Account_AccountId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_People_dbo_Addresses_Address_AddressId">
-    <End Role="Addresses" Type="bullerModel.Store.Addresses" Multiplicity="0..1" />
-    <End Role="People" Type="bullerModel.Store.People" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Addresses">
-        <PropertyRef Name="AddressId" />
-      </Principal>
-      <Dependent Role="People">
-        <PropertyRef Name="Address_AddressId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId">
-    <End Role="People" Type="bullerModel.Store.People" Multiplicity="0..1" />
-    <End Role="CreditCards" Type="bullerModel.Store.CreditCards" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="People">
-        <PropertyRef Name="PersonId" />
-      </Principal>
-      <Dependent Role="CreditCards">
-        <PropertyRef Name="CreditCardUser_PersonId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId">
-    <End Role="CreditCards" Type="bullerModel.Store.CreditCards" Multiplicity="0..1" />
-    <End Role="Transactions" Type="bullerModel.Store.Transactions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CreditCards">
-        <PropertyRef Name="CreditCardId" />
-      </Principal>
-      <Dependent Role="Transactions">
-        <PropertyRef Name="CreditCard_CreditCardId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="bullerModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="bullerEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Accounts" EntityType="bullerModel.Account" />
-          <EntitySet Name="Addresses" EntityType="bullerModel.Address" />
-          <EntitySet Name="CreditCards" EntityType="bullerModel.CreditCard" />
-          <EntitySet Name="People" EntityType="bullerModel.Person" />
-          <EntitySet Name="Transactions" EntityType="bullerModel.Transaction" />
-          <AssociationSet Name="FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId" Association="bullerModel.FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId">
+        <EntityContainer Name="bullerModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="bullerModel.Store.Accounts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Addresses" EntityType="bullerModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CreditCards" EntityType="bullerModel.Store.CreditCards" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="People" EntityType="bullerModel.Store.People" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Transactions" EntityType="bullerModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId" Association="bullerModel.Store.FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId">
             <End Role="CreditCards" EntitySet="CreditCards" />
             <End Role="Accounts" EntitySet="Accounts" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_Accounts_dbo_People_AccountUser_PersonId" Association="bullerModel.FK_dbo_Accounts_dbo_People_AccountUser_PersonId">
+          <AssociationSet Name="FK_dbo_Accounts_dbo_People_AccountUser_PersonId" Association="bullerModel.Store.FK_dbo_Accounts_dbo_People_AccountUser_PersonId">
             <End Role="People" EntitySet="People" />
             <End Role="Accounts" EntitySet="Accounts" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_CreditCards_dbo_Accounts_Account_AccountId" Association="bullerModel.FK_dbo_CreditCards_dbo_Accounts_Account_AccountId">
+          <AssociationSet Name="FK_dbo_Addresses_dbo_People_Person_PersonId" Association="bullerModel.Store.FK_dbo_Addresses_dbo_People_Person_PersonId">
+            <End Role="People" EntitySet="People" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CreditCards_dbo_Accounts_Account_AccountId" Association="bullerModel.Store.FK_dbo_CreditCards_dbo_Accounts_Account_AccountId">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="CreditCards" EntitySet="CreditCards" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_People_dbo_Addresses_Address_AddressId" Association="bullerModel.FK_dbo_People_dbo_Addresses_Address_AddressId">
+          <AssociationSet Name="FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId" Association="bullerModel.Store.FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId">
+            <End Role="People" EntitySet="People" />
+            <End Role="CreditCards" EntitySet="CreditCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_People_dbo_Addresses_Address_AddressId" Association="bullerModel.Store.FK_dbo_People_dbo_Addresses_Address_AddressId">
             <End Role="Addresses" EntitySet="Addresses" />
             <End Role="People" EntitySet="People" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId" Association="bullerModel.FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId">
-            <End Role="People" EntitySet="People" />
-            <End Role="CreditCards" EntitySet="CreditCards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId" Association="bullerModel.FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId">
+          <AssociationSet Name="FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId" Association="bullerModel.Store.FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId">
             <End Role="CreditCards" EntitySet="CreditCards" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Account">
+        <EntityType Name="Accounts">
           <Key>
             <PropertyRef Name="AccountId" />
           </Key>
-          <Property Name="AccountId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="CreditCard_CreditCardId" Type="Int32" />
-          <Property Name="AccountUser_PersonId" Type="Int32" />
-          <Property Name="Limit" Type="Int32" Nullable="false" />
-          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
-          <NavigationProperty Name="CreditCard" Relationship="bullerModel.FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId" FromRole="Accounts" ToRole="CreditCards" />
-          <NavigationProperty Name="AccountUser" Relationship="bullerModel.FK_dbo_Accounts_dbo_People_AccountUser_PersonId" FromRole="Accounts" ToRole="People" />
-          <NavigationProperty Name="CreditCards" Relationship="bullerModel.FK_dbo_CreditCards_dbo_Accounts_Account_AccountId" FromRole="Accounts" ToRole="CreditCards" />
+          <Property Name="AccountId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CreditCard_CreditCardId" Type="int" />
+          <Property Name="AccountUser_PersonId" Type="int" />
+          <Property Name="Limit" Type="int" Nullable="false" />
+          <Property Name="Balance" Type="decimal" Nullable="false" Precision="10" Scale="4" />
         </EntityType>
-        <EntityType Name="Address">
+        <EntityType Name="Addresses">
           <Key>
             <PropertyRef Name="AddressId" />
           </Key>
-          <Property Name="AddressId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Street" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="State" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Zipcode" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="People" Relationship="bullerModel.FK_dbo_People_dbo_Addresses_Address_AddressId" FromRole="Addresses" ToRole="People" />
+          <Property Name="AddressId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zipcode" Type="int" />
+          <Property Name="Person_PersonId" Type="int" />
         </EntityType>
-        <EntityType Name="CreditCard">
+        <EntityType Name="CreditCards">
           <Key>
             <PropertyRef Name="CreditCardId" />
           </Key>
-          <Property Name="CreditCardId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="CreditCardNumber" Type="Int64" Nullable="false" />
-          <Property Name="CardType" Type="Byte" Nullable="false" />
-          <Property Name="Limit" Type="Int32" Nullable="false" />
-          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
-          <Property Name="ExpirationMonth" Type="Byte" Nullable="false" />
-          <Property Name="ExpirationYear" Type="Byte" Nullable="false" />
-          <Property Name="CreditCardUser_PersonId" Type="Int32" />
-          <Property Name="Account_AccountId" Type="Int32" />
-          <NavigationProperty Name="Accounts" Relationship="bullerModel.FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId" FromRole="CreditCards" ToRole="Accounts" />
-          <NavigationProperty Name="Account" Relationship="bullerModel.FK_dbo_CreditCards_dbo_Accounts_Account_AccountId" FromRole="CreditCards" ToRole="Accounts" />
-          <NavigationProperty Name="CreditCardUser" Relationship="bullerModel.FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId" FromRole="CreditCards" ToRole="People" />
-          <NavigationProperty Name="Transactions" Relationship="bullerModel.FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId" FromRole="CreditCards" ToRole="Transactions" />
+          <Property Name="CreditCardId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CreditCardNumber" Type="bigint" StoreGeneratedPattern="Computed" />
+          <Property Name="CardType" Type="tinyint" />
+          <Property Name="Limit" Type="int" />
+          <Property Name="Balance" Type="decimal" Precision="10" Scale="4" />
+          <Property Name="ExpirationMonth" Type="tinyint" />
+          <Property Name="ExpirationYear" Type="tinyint" />
+          <Property Name="CreditCardUser_PersonId" Type="int" />
+          <Property Name="Account_AccountId" Type="int" />
         </EntityType>
-        <EntityType Name="Person">
+        <EntityType Name="People">
           <Key>
             <PropertyRef Name="PersonId" />
           </Key>
-          <Property Name="PersonId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Age" Type="Byte" />
-          <Property Name="FirstName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Address_AddressId" Type="Int32" />
-          <NavigationProperty Name="Accounts" Relationship="bullerModel.FK_dbo_Accounts_dbo_People_AccountUser_PersonId" FromRole="People" ToRole="Accounts" />
-          <NavigationProperty Name="Address" Relationship="bullerModel.FK_dbo_People_dbo_Addresses_Address_AddressId" FromRole="People" ToRole="Addresses" />
-          <NavigationProperty Name="CreditCards" Relationship="bullerModel.FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId" FromRole="People" ToRole="CreditCards" />
+          <Property Name="PersonId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Age" Type="tinyint" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address_AddressId" Type="int" />
         </EntityType>
-        <EntityType Name="Transaction">
+        <EntityType Name="Transactions">
           <Key>
             <PropertyRef Name="TransactionId" />
           </Key>
-          <Property Name="TransactionId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
-          <Property Name="TransactionDay" Type="Byte" Nullable="false" />
-          <Property Name="TransactionMonth" Type="Byte" Nullable="false" />
-          <Property Name="TransactionYear" Type="Byte" Nullable="false" />
-          <Property Name="BusinessName" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
-          <Property Name="CreditCard_CreditCardId" Type="Int32" />
-          <NavigationProperty Name="CreditCard" Relationship="bullerModel.FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId" FromRole="Transactions" ToRole="CreditCards" />
+          <Property Name="TransactionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="TransactionDay" Type="tinyint" Nullable="false" />
+          <Property Name="TransactionMonth" Type="tinyint" Nullable="false" />
+          <Property Name="TransactionYear" Type="tinyint" Nullable="false" />
+          <Property Name="BusinessName" Type="nvarchar" Nullable="false" MaxLength="25" />
+          <Property Name="CreditCard_CreditCardId" Type="int" />
         </EntityType>
         <Association Name="FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId">
-          <End Role="CreditCards" Type="bullerModel.CreditCard" Multiplicity="0..1" />
-          <End Role="Accounts" Type="bullerModel.Account" Multiplicity="*" />
+          <End Role="CreditCards" Type="bullerModel.Store.CreditCards" Multiplicity="0..1" />
+          <End Role="Accounts" Type="bullerModel.Store.Accounts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CreditCards">
               <PropertyRef Name="CreditCardId" />
@@ -282,8 +111,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Accounts_dbo_People_AccountUser_PersonId">
-          <End Role="People" Type="bullerModel.Person" Multiplicity="0..1" />
-          <End Role="Accounts" Type="bullerModel.Account" Multiplicity="*" />
+          <End Role="People" Type="bullerModel.Store.People" Multiplicity="0..1" />
+          <End Role="Accounts" Type="bullerModel.Store.Accounts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="People">
               <PropertyRef Name="PersonId" />
@@ -293,9 +122,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_Addresses_dbo_People_Person_PersonId">
+          <End Role="People" Type="bullerModel.Store.People" Multiplicity="0..1" />
+          <End Role="Addresses" Type="bullerModel.Store.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="Person_PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_CreditCards_dbo_Accounts_Account_AccountId">
-          <End Role="Accounts" Type="bullerModel.Account" Multiplicity="0..1" />
-          <End Role="CreditCards" Type="bullerModel.CreditCard" Multiplicity="*" />
+          <End Role="Accounts" Type="bullerModel.Store.Accounts" Multiplicity="0..1" />
+          <End Role="CreditCards" Type="bullerModel.Store.CreditCards" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Accounts">
               <PropertyRef Name="AccountId" />
@@ -305,21 +146,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_People_dbo_Addresses_Address_AddressId">
-          <End Role="Addresses" Type="bullerModel.Address" Multiplicity="0..1" />
-          <End Role="People" Type="bullerModel.Person" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Addresses">
-              <PropertyRef Name="AddressId" />
-            </Principal>
-            <Dependent Role="People">
-              <PropertyRef Name="Address_AddressId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId">
-          <End Role="People" Type="bullerModel.Person" Multiplicity="0..1" />
-          <End Role="CreditCards" Type="bullerModel.CreditCard" Multiplicity="*" />
+          <End Role="People" Type="bullerModel.Store.People" Multiplicity="0..1" />
+          <End Role="CreditCards" Type="bullerModel.Store.CreditCards" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="People">
               <PropertyRef Name="PersonId" />
@@ -329,9 +158,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_People_dbo_Addresses_Address_AddressId">
+          <End Role="Addresses" Type="bullerModel.Store.Addresses" Multiplicity="0..1" />
+          <End Role="People" Type="bullerModel.Store.People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="Address_AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId">
-          <End Role="CreditCards" Type="bullerModel.CreditCard" Multiplicity="0..1" />
-          <End Role="Transactions" Type="bullerModel.Transaction" Multiplicity="*" />
+          <End Role="CreditCards" Type="bullerModel.Store.CreditCards" Multiplicity="0..1" />
+          <End Role="Transactions" Type="bullerModel.Store.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CreditCards">
               <PropertyRef Name="CreditCardId" />
@@ -341,75 +182,271 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bullerModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="bullerEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="bullerModel.Account" />
+          <EntitySet Name="Addresses" EntityType="bullerModel.Address" />
+          <EntitySet Name="People" EntityType="bullerModel.Person" />
+          <EntitySet Name="Transactions" EntityType="bullerModel.Transaction" />
+          <AssociationSet Name="FK_dbo_Accounts_dbo_People_AccountUser_PersonId" Association="bullerModel.FK_dbo_Accounts_dbo_People_AccountUser_PersonId">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Addresses_dbo_People_Person_PersonId" Association="bullerModel.FK_dbo_Addresses_dbo_People_Person_PersonId">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_People_dbo_Addresses_Address_AddressId" Association="bullerModel.FK_dbo_People_dbo_Addresses_Address_AddressId">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <EntitySet Name="CreditCards" EntityType="bullerModel.CreditCard" />
+          <AssociationSet Name="FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId" Association="bullerModel.FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId">
+            <End Role="CreditCard" EntitySet="CreditCards" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CreditCards_dbo_Accounts_Account_AccountId" Association="bullerModel.FK_dbo_CreditCards_dbo_Accounts_Account_AccountId">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="CreditCard" EntitySet="CreditCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId" Association="bullerModel.FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId">
+            <End Role="Person" EntitySet="People" />
+            <End Role="CreditCard" EntitySet="CreditCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId" Association="bullerModel.FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId">
+            <End Role="CreditCard" EntitySet="CreditCards" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Type="Int32" Name="AccountId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CreditCard_CreditCardId" />
+          <Property Type="Int32" Name="AccountUser_PersonId" />
+          <Property Type="Int32" Name="Limit" Nullable="false" />
+          <Property Type="Decimal" Name="Balance" Nullable="false" Precision="10" Scale="4" />
+          <NavigationProperty Name="AccountUser" Relationship="bullerModel.FK_dbo_Accounts_dbo_People_AccountUser_PersonId" FromRole="Account" ToRole="Person" />
+          <NavigationProperty Name="CreditCard" Relationship="bullerModel.FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId" FromRole="Account" ToRole="CreditCard" />
+          <NavigationProperty Name="CreditCards" Relationship="bullerModel.FK_dbo_CreditCards_dbo_Accounts_Account_AccountId" FromRole="Account" ToRole="CreditCard" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Type="Int32" Name="AddressId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Street" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Zipcode" />
+          <Property Type="Int32" Name="Person_PersonId" />
+          <NavigationProperty Name="Person" Relationship="bullerModel.FK_dbo_Addresses_dbo_People_Person_PersonId" FromRole="Address" ToRole="Person" />
+          <NavigationProperty Name="People" Relationship="bullerModel.FK_dbo_People_dbo_Addresses_Address_AddressId" FromRole="Address" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Type="Int32" Name="PersonId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="Age" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Address_AddressId" />
+          <NavigationProperty Name="Accounts" Relationship="bullerModel.FK_dbo_Accounts_dbo_People_AccountUser_PersonId" FromRole="Person" ToRole="Account" />
+          <NavigationProperty Name="Addresses" Relationship="bullerModel.FK_dbo_Addresses_dbo_People_Person_PersonId" FromRole="Person" ToRole="Address" />
+          <NavigationProperty Name="Address" Relationship="bullerModel.FK_dbo_People_dbo_Addresses_Address_AddressId" FromRole="Person" ToRole="Address" />
+          <NavigationProperty Name="CreditCards" Relationship="bullerModel.FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId" FromRole="Person" ToRole="CreditCard" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionId" />
+          </Key>
+          <Property Type="Int32" Name="TransactionId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="10" Scale="4" />
+          <Property Type="Byte" Name="TransactionDay" Nullable="false" />
+          <Property Type="Byte" Name="TransactionMonth" Nullable="false" />
+          <Property Type="Byte" Name="TransactionYear" Nullable="false" />
+          <Property Type="String" Name="BusinessName" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CreditCard_CreditCardId" />
+          <NavigationProperty Name="CreditCard" Relationship="bullerModel.FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId" FromRole="Transaction" ToRole="CreditCard" />
+        </EntityType>
+        <Association Name="FK_dbo_Accounts_dbo_People_AccountUser_PersonId">
+          <End Type="bullerModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="bullerModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="AccountUser_PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Addresses_dbo_People_Person_PersonId">
+          <End Type="bullerModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="bullerModel.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="Person_PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_People_dbo_Addresses_Address_AddressId">
+          <End Type="bullerModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="bullerModel.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="Address_AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="CreditCardId" />
+          </Key>
+          <Property Type="Int32" Name="CreditCardId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="CreditCardNumber" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Byte" Name="CardType" />
+          <Property Type="Int32" Name="Limit" />
+          <Property Type="Decimal" Name="Balance" Precision="10" Scale="4" />
+          <Property Type="Byte" Name="ExpirationMonth" />
+          <Property Type="Byte" Name="ExpirationYear" />
+          <Property Type="Int32" Name="CreditCardUser_PersonId" />
+          <Property Type="Int32" Name="Account_AccountId" />
+          <NavigationProperty Name="Accounts" Relationship="bullerModel.FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId" FromRole="CreditCard" ToRole="Account" />
+          <NavigationProperty Name="Account" Relationship="bullerModel.FK_dbo_CreditCards_dbo_Accounts_Account_AccountId" FromRole="CreditCard" ToRole="Account" />
+          <NavigationProperty Name="CreditCardUser" Relationship="bullerModel.FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId" FromRole="CreditCard" ToRole="Person" />
+          <NavigationProperty Name="Transactions" Relationship="bullerModel.FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId" FromRole="CreditCard" ToRole="Transaction" />
+        </EntityType>
+        <Association Name="FK_dbo_Accounts_dbo_CreditCards_CreditCard_CreditCardId">
+          <End Type="bullerModel.CreditCard" Role="CreditCard" Multiplicity="0..1" />
+          <End Type="bullerModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCard">
+              <PropertyRef Name="CreditCardId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="CreditCard_CreditCardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CreditCards_dbo_Accounts_Account_AccountId">
+          <End Type="bullerModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="bullerModel.CreditCard" Role="CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="Account_AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CreditCards_dbo_People_CreditCardUser_PersonId">
+          <End Type="bullerModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="bullerModel.CreditCard" Role="CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="CreditCardUser_PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Transactions_dbo_CreditCards_CreditCard_CreditCardId">
+          <End Type="bullerModel.CreditCard" Role="CreditCard" Multiplicity="0..1" />
+          <End Type="bullerModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCard">
+              <PropertyRef Name="CreditCardId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="CreditCard_CreditCardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="bullerModelStoreContainer" CdmEntityContainer="bullerEntities">
-    <EntitySetMapping Name="Accounts">
-      <EntityTypeMapping TypeName="IsTypeOf(bullerModel.Account)">
-        <MappingFragment StoreEntitySet="Accounts">
-          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
-          <ScalarProperty Name="CreditCard_CreditCardId" ColumnName="CreditCard_CreditCardId" />
-          <ScalarProperty Name="AccountUser_PersonId" ColumnName="AccountUser_PersonId" />
-          <ScalarProperty Name="Limit" ColumnName="Limit" />
-          <ScalarProperty Name="Balance" ColumnName="Balance" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Addresses">
-      <EntityTypeMapping TypeName="IsTypeOf(bullerModel.Address)">
-        <MappingFragment StoreEntitySet="Addresses">
-          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Street" ColumnName="Street" />
-          <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CreditCards">
-      <EntityTypeMapping TypeName="IsTypeOf(bullerModel.CreditCard)">
-        <MappingFragment StoreEntitySet="CreditCards">
-          <ScalarProperty Name="CreditCardId" ColumnName="CreditCardId" />
-          <ScalarProperty Name="CreditCardNumber" ColumnName="CreditCardNumber" />
-          <ScalarProperty Name="CardType" ColumnName="CardType" />
-          <ScalarProperty Name="Limit" ColumnName="Limit" />
-          <ScalarProperty Name="Balance" ColumnName="Balance" />
-          <ScalarProperty Name="ExpirationMonth" ColumnName="ExpirationMonth" />
-          <ScalarProperty Name="ExpirationYear" ColumnName="ExpirationYear" />
-          <ScalarProperty Name="CreditCardUser_PersonId" ColumnName="CreditCardUser_PersonId" />
-          <ScalarProperty Name="Account_AccountId" ColumnName="Account_AccountId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="People">
-      <EntityTypeMapping TypeName="IsTypeOf(bullerModel.Person)">
-        <MappingFragment StoreEntitySet="People">
-          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-          <ScalarProperty Name="Age" ColumnName="Age" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Address_AddressId" ColumnName="Address_AddressId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Transactions">
-      <EntityTypeMapping TypeName="IsTypeOf(bullerModel.Transaction)">
-        <MappingFragment StoreEntitySet="Transactions">
-          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="TransactionDay" ColumnName="TransactionDay" />
-          <ScalarProperty Name="TransactionMonth" ColumnName="TransactionMonth" />
-          <ScalarProperty Name="TransactionYear" ColumnName="TransactionYear" />
-          <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
-          <ScalarProperty Name="CreditCard_CreditCardId" ColumnName="CreditCard_CreditCardId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-  </EntityContainerMapping>
+  <EntityContainerMapping CdmEntityContainer="bullerEntities" StorageEntityContainer="bullerModelStoreContainer">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="bullerModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="AccountUser_PersonId" ColumnName="AccountUser_PersonId" />
+                <ScalarProperty Name="CreditCard_CreditCardId" ColumnName="CreditCard_CreditCardId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="bullerModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="Person_PersonId" ColumnName="Person_PersonId" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="bullerModel.Person">
+              <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="Address_AddressId" ColumnName="Address_AddressId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="bullerModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="CreditCard_CreditCardId" ColumnName="CreditCard_CreditCardId" />
+                <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
+                <ScalarProperty Name="TransactionYear" ColumnName="TransactionYear" />
+                <ScalarProperty Name="TransactionMonth" ColumnName="TransactionMonth" />
+                <ScalarProperty Name="TransactionDay" ColumnName="TransactionDay" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCards">
+            <EntityTypeMapping TypeName="bullerModel.CreditCard">
+              <MappingFragment StoreEntitySet="CreditCards">
+                <ScalarProperty Name="Account_AccountId" ColumnName="Account_AccountId" />
+                <ScalarProperty Name="CreditCardUser_PersonId" ColumnName="CreditCardUser_PersonId" />
+                <ScalarProperty Name="ExpirationYear" ColumnName="ExpirationYear" />
+                <ScalarProperty Name="ExpirationMonth" ColumnName="ExpirationMonth" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="CreditCardNumber" ColumnName="CreditCardNumber" />
+                <ScalarProperty Name="CreditCardId" ColumnName="CreditCardId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->

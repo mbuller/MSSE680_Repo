@@ -29,6 +29,13 @@ namespace DAL
             this.Zipcode = Zipcode;
         }
 
+        public Address(
+                    int person_PersonId)
+        {
+            this.Person_PersonId = person_PersonId;
+        }
+
+
         /**
          * int AddressId
          * String City

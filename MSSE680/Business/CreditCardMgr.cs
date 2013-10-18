@@ -21,29 +21,111 @@ namespace Business
             transactionSvc = (ITransactionSvc)GetService("TransactionSvcRepoImpl");
         }
 
+       public void CreateCreditCard(int id)
+       {
+           CreditCard creditcard = new CreditCard(id);
+           creditcard.CardType = 1;
+
+           if (creditcard.Balance == null)
+           {
+               creditcard.Balance = 0;
+           }
+
+           if (creditcard.Limit == null)
+           {
+               creditcard.Limit = 0;
+           }
+
+           if (creditcard.ExpirationMonth == null)
+           {
+               creditcard.ExpirationMonth = 0;
+           }
+
+           if (creditcard.ExpirationYear == null)
+           {
+               creditcard.ExpirationYear = 0;
+           }
+
+
+           Account account = accountSvc.RetrieveAccount("AccountUser_PersonId", (int?)id);
+           if (account == null)
+           {
+               account = new Account(id);
+               accountSvc.CreateAccount(account);
+               Account account2 = accountSvc.RetrieveAccount("AccountUser_PersonId", (int?)id);
+               creditcard.Account_AccountId = account2.AccountId;
+               creditCardSvc.CreateCreditCard(creditcard);
+               account2.CreditCard_CreditCardId = creditcard.CreditCardId;
+               accountSvc.ModifyAccount(account2);
+           }
+           else
+           {
+               creditcard.Account_AccountId = account.AccountId;
+
+
+               creditCardSvc.CreateCreditCard(creditcard);
+               account.CreditCard_CreditCardId = creditcard.CreditCardId;
+               accountSvc.ModifyAccount(account);
+           }
+       
+       }
+
         public void CreateCreditCard(CreditCard creditCard)
         {
            //  ICreditCardSvc creditCardSvc = (ICreditCardSvc)GetService("CreditCardSvcRepoImpl");
+            if (creditCard.CardType == null)
+            {
+                creditCard.CardType = 2;
+            }
 
+            if (creditCard.Balance == null)
+            {
+                creditCard.Balance = 0;
+            }
 
+            if (creditCard.Limit == null)
+            {
+                creditCard.Limit = 0;
+            }
+
+            if (creditCard.ExpirationMonth == null)
+            {
+                creditCard.ExpirationMonth = 0;
+            }
+
+            if (creditCard.ExpirationYear == null)
+            {
+                creditCard.ExpirationYear = 0;
+            }
 
             if (creditCard.Account_AccountId != null)
             {
                 if (creditCard.CardType == 1)
                 {
                     creditCardSvc.CreateCreditCard(creditCard);
+                    
                     Account account = accountSvc.RetrieveAccount("AccountId", (int)creditCard.Account_AccountId);
                     account.CreditCard_CreditCardId = creditCard.CreditCardId;
                     accountSvc.ModifyAccount(account);
                 }
                 else
                 {
+                   
                     creditCardSvc.CreateCreditCard(creditCard);
                 }
             }
             else
             {
-                creditCardSvc.CreateCreditCard(creditCard);
+                Account account = accountSvc.RetrieveAccount("AccountUser_PersonId", creditCard.CreditCardUser_PersonId);
+                if (account == null)
+                {
+                    creditCardSvc.CreateCreditCard(creditCard);
+                }
+                else
+                {
+                    creditCard.Account_AccountId = account.AccountId;
+                    creditCardSvc.CreateCreditCard(creditCard);
+                }
             }
 
 
@@ -86,12 +168,25 @@ namespace Business
                     {
                         if (_creditcard.CardType == 1)
                         {
-                            throw new System.InvalidOperationException("There is already a credit card with cardType 1 for this account");
+                            if (_creditcard.CreditCardId != creditCard.CreditCardId)
+                            {
+                                throw new System.InvalidOperationException("There is already a credit card with cardType 1 for this account");
+                            }
                         }
                         
                     }
-                    creditcardCollecton = null;
-                    creditCardSvc.ModifyCreditCard(creditCard);
+                    //CreditCard newCC = creditCardSvc.RetrieveCreditCard("CreditCardId", creditCard.CreditCardId);
+                    //newCC = creditCard;
+                    int location = creditcardCollecton.FindIndex(c => c.CreditCardId == creditCard.CreditCardId);
+                    //creditcardCollecton[location] = creditCard;
+                    creditcardCollecton[location].Balance = creditCard.Balance;
+                    creditcardCollecton[location].CardType = creditCard.CardType;
+                    creditcardCollecton[location].ExpirationMonth = creditCard.ExpirationMonth;
+                    creditcardCollecton[location].ExpirationYear = creditCard.ExpirationYear;
+                    creditcardCollecton[location].CreditCardUser_PersonId = creditCard.CreditCardUser_PersonId;
+                    creditcardCollecton[location].Account_AccountId = creditCard.Account_AccountId;
+                    //creditcardCollecton = null;
+                    creditCardSvc.ModifyCreditCard(creditcardCollecton[location]);
                     Account account = accountSvc.RetrieveAccount("AccountId", (int)creditCard.Account_AccountId);
                     account.CreditCard_CreditCardId = creditCard.CreditCardId;
                     accountSvc.ModifyAccount(account);
@@ -130,6 +225,17 @@ namespace Business
         {
            //  ICreditCardSvc creditCardSvc = (ICreditCardSvc)GetService("CreditCardSvcRepoImpl");
             return creditCardSvc.RetrieveCreditCard(DBColumnName, NullableIntValue);
+        }
+
+        public ICollection<CreditCard> RetrieveCreditCards(String DBColumnName, int IntValue)
+        {
+            //  ICreditCardSvc creditCardSvc = (ICreditCardSvc)GetService("CreditCardSvcRepoImpl");
+            return creditCardSvc.RetrieveCreditCards(DBColumnName, IntValue);
+        }
+        public ICollection<CreditCard> RetrieveCreditCards(String DBColumnName, int? NullableIntValue)
+        {
+            //  ICreditCardSvc creditCardSvc = (ICreditCardSvc)GetService("CreditCardSvcRepoImpl");
+            return creditCardSvc.RetrieveCreditCards(DBColumnName, NullableIntValue);
         }
         public ICollection<CreditCard> RetrieveAllCreditCards()
         {

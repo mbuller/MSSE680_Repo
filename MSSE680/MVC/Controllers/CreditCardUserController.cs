@@ -7,9 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Business;
+using logonTest.Filters;
+using WebMatrix.WebData;
 
 namespace logonTest.Controllers
 {
+    [InitializeSimpleMembership]
     [Authorize(Roles = "User")]
     public class CreditCardUserController : Controller
     {
@@ -26,7 +29,40 @@ namespace logonTest.Controllers
         {
             //var creditcards = db.CreditCards.Include(c => c.Account).Include(c => c.CreditCardUser);
             //return View(creditcards.ToList());
-            return View(ccMgr.RetrieveAllCreditCards().ToList());
+            CreditCard creditcard = ccMgr.RetrieveCreditCard("CreditCardUser_PersonId", (int?)WebSecurity.CurrentUserId);
+            if (creditcard == null)
+            {
+
+                ccMgr.CreateCreditCard(WebSecurity.CurrentUserId);
+               /* creditcard = new CreditCard(WebSecurity.CurrentUserId);
+                creditcard.CardType = 1;
+
+                Account account = accountMgr.RetrieveAccount("AccountUser_PersonId", (int?)WebSecurity.CurrentUserId);
+                if (account == null)
+                {
+                    Account account2 = new Account(WebSecurity.CurrentUserId);
+                    accountMgr.CreateAccount(account2);
+                    Account account3 = accountMgr.RetrieveAccount("AccountUser_PersonId", (int?)WebSecurity.CurrentUserId);
+                    creditcard.Account_AccountId = account3.AccountId;
+                    ccMgr.CreateCreditCard(creditcard);
+                    account3.CreditCard_CreditCardId = creditcard.CreditCardId;
+                    accountMgr.ModifyAccount(account3);
+                }
+                else
+                {
+                    creditcard.Account_AccountId = account.AccountId;
+
+
+                    ccMgr.CreateCreditCard(creditcard);
+                    account.CreditCard_CreditCardId = creditcard.CreditCardId;
+                    accountMgr.ModifyAccount(account);
+                }
+               */
+            }
+
+            
+
+            return View(ccMgr.RetrieveCreditCards("CreditCardUser_PersonId", (int?)WebSecurity.CurrentUserId).ToList());
         }
 
         //
@@ -50,8 +86,8 @@ namespace logonTest.Controllers
         {
             //ViewBag.Account_AccountId = new SelectList(db.Accounts, "AccountId", "AccountId");
             //ViewBag.CreditCardUser_PersonId = new SelectList(db.People, "PersonId", "PersonId");
-            ViewBag.Account_AccountId = new SelectList(accountMgr.RetrieveAllAccounts(), "AccountId", "AccountId");
-            ViewBag.CreditCardUser_PersonId = new SelectList(personMgr.RetrieveAllPeople(), "PersonId", "PersonId");
+         //   ViewBag.Account_AccountId = new SelectList(accountMgr.RetrieveAllAccounts(), "AccountId", "AccountId");
+           // ViewBag.CreditCardUser_PersonId = new SelectList(personMgr.RetrieveAllPeople(), "PersonId", "PersonId");
 
             return View();
         }
@@ -63,10 +99,12 @@ namespace logonTest.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreditCard creditcard)
         {
+
             if (ModelState.IsValid)
             {
                 //db.CreditCards.Add(creditcard);
                 //db.SaveChanges();
+                creditcard.CreditCardUser_PersonId = WebSecurity.CurrentUserId;
                 ccMgr.CreateCreditCard(creditcard);
                 return RedirectToAction("Index");
             }

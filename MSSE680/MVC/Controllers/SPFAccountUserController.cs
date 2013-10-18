@@ -7,9 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Business;
+using logonTest.Filters;
+using WebMatrix.WebData;
 
 namespace logonTest.Controllers
 {
+    [InitializeSimpleMembership]
     [Authorize(Roles = "User")]
     public class SPFAccountuserController : Controller
     {
@@ -26,7 +29,15 @@ namespace logonTest.Controllers
         {
             //var accounts = db.Accounts.Include(a => a.CreditCard).Include(a => a.AccountUser);
             //return View(accounts.ToList());
-            return View(accountMgr.RetrieveAllAccounts().ToList());
+            //return View(accountMgr.RetrieveAllAccounts().ToList());
+            Account account = accountMgr.RetrieveAccount("AccountUser_PersonId", (int?)WebSecurity.CurrentUserId);
+            if (account == null)
+            {
+
+                accountMgr.CreateAccount(WebSecurity.CurrentUserId);
+            }
+
+            return View(accountMgr.RetrieveAccount("AccountUser_PersonId", (int?)WebSecurity.CurrentUserId));
         }
 
         //

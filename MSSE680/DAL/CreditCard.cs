@@ -21,12 +21,12 @@ namespace DAL
         }
     
         public int CreditCardId { get; set; }
-        public long CreditCardNumber { get; set; }
-        public byte CardType { get; set; }
-        public int Limit { get; set; }
-        public decimal Balance { get; set; }
-        public byte ExpirationMonth { get; set; }
-        public byte ExpirationYear { get; set; }
+        public Nullable<long> CreditCardNumber { get; set; }
+        public Nullable<byte> CardType { get; set; }
+        public Nullable<int> Limit { get; set; }
+        public Nullable<decimal> Balance { get; set; }
+        public Nullable<byte> ExpirationMonth { get; set; }
+        public Nullable<byte> ExpirationYear { get; set; }
         public Nullable<int> CreditCardUser_PersonId { get; set; }
         public Nullable<int> Account_AccountId { get; set; }
     

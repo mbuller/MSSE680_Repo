@@ -25,8 +25,8 @@ namespace DAL
         public int Limit { get; set; }
         public decimal Balance { get; set; }
     
-        public virtual CreditCard CreditCard { get; set; }
         public virtual Person AccountUser { get; set; }
+        public virtual CreditCard CreditCard { get; set; }
         public virtual ICollection<CreditCard> CreditCards { get; set; }
     }
 }

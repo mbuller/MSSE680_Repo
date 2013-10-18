@@ -13,6 +13,7 @@ namespace Business
         public IPersonSvc personSvc;
         public IAccountSvc accountSvc;
         public ICreditCardSvc creditCardSvc;
+        public IAddressSvc addressSvc;
         
 
        public PersonMgr()
@@ -20,13 +21,47 @@ namespace Business
             personSvc = (IPersonSvc)GetService("PersonSvcRepoImpl");
             accountSvc = (IAccountSvc)GetService("AccountSvcRepoImpl");
             creditCardSvc = (ICreditCardSvc)GetService("CreditCardSvcRepoImpl");
+            addressSvc = (IAddressSvc)GetService("AddressSvcRepoImpl");
         }
 
 
         public void CreatePerson(Person person)
         {
             // IPersonSvc personSvc = (IPersonSvc)GetService("PersonSvcRepoImpl");
-            personSvc.CreatePerson(person);
+            
+            //check if the person has a Address_AddressId set
+            if (person.Address_AddressId != null)
+            {
+                Address address = addressSvc.RetrieveAddress("AddressId", (int)person.Address_AddressId);
+                if (address == null )
+                {
+                    person.Address_AddressId = null;
+                    personSvc.CreatePerson(person);
+                }
+                //check to make sure that the CreditCard type is  "1" before setting accounts CreditCard_CreditCardId to this credit card
+                else if (address != null)
+                {
+                    
+                    personSvc.CreatePerson(person);
+                    address.Person_PersonId = person.PersonId;
+                    addressSvc.ModifyAddress(address);
+                }
+                //if it is not, then set CreditCard_CreditCardId to a null value and then create account... 
+                //this really should throw an error stating that the value being passed in has invalid CreditCard_CreditCardId
+                else
+                {
+                    throw new System.InvalidOperationException("PersonMgr error when creting person");
+                   // account.CreditCard_CreditCardId =null;
+                    //accountSvc.CreateAccount(account);
+                }
+            }
+            else
+            {
+                personSvc.CreatePerson(person);
+            }
+
+
+            
         }
 
         public void RemovePerson(Person person)
@@ -54,7 +89,38 @@ namespace Business
         public void ModifyPerson(Person person)
         {
             // IPersonSvc personSvc = (IPersonSvc)GetService("PersonSvcRepoImpl");
-            personSvc.ModifyPerson(person);
+            //personSvc.ModifyPerson(person);
+
+            //check if the person has a Address_AddressId set
+            if (person.Address_AddressId != null)
+            {
+                Address address = addressSvc.RetrieveAddress("AddressId", (int)person.Address_AddressId);
+                if (address == null)
+                {
+                    person.Address_AddressId = null;
+                    personSvc.ModifyPerson(person);
+                }
+                //check to make sure that the CreditCard type is  "1" before setting accounts CreditCard_CreditCardId to this credit card
+                else if (address != null)
+                {
+
+                    personSvc.ModifyPerson(person);
+                    address.Person_PersonId = person.PersonId;
+                    addressSvc.ModifyAddress(address);
+                }
+                //if it is not, then set CreditCard_CreditCardId to a null value and then create account... 
+                //this really should throw an error stating that the value being passed in has invalid CreditCard_CreditCardId
+                else
+                {
+                    throw new System.InvalidOperationException("PersonMgr error when creting person");
+                    // account.CreditCard_CreditCardId =null;
+                    //accountSvc.CreateAccount(account);
+                }
+            }
+            else
+            {
+                personSvc.ModifyPerson(person);
+            }
         }
 
         public Person RetrievePerson(String DBColumnName, String StringValue)

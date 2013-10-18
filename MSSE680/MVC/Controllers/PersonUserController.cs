@@ -7,9 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Business;
+using logonTest.Filters;
+using WebMatrix.WebData;
 
 namespace logonTest.Controllers
 {
+    [InitializeSimpleMembership]
     [Authorize(Roles = "User")]
     public class PersonUserController : Controller
     {
@@ -24,7 +27,8 @@ namespace logonTest.Controllers
         {
             //var people = db.People.Include(p => p.Address);
             //return View(people.ToList());
-            return View(personMgr.RetrieveAllPeople().ToList());
+            //return View(personMgr.RetrieveAllPeople().ToList());
+            return View(personMgr.RetrievePerson("PersonId", WebSecurity.CurrentUserId));
         }
 
         //
@@ -75,7 +79,7 @@ namespace logonTest.Controllers
         public ActionResult Edit(int id = 0)
         {
             //Person person = db.People.Find(id);
-            Person person = personMgr.RetrievePerson("PersonId", id);
+            Person person = personMgr.RetrievePerson("PersonId", WebSecurity.CurrentUserId);
             if (person == null)
             {
                 return HttpNotFound();

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<DAL.CreditCard>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Credit Cards";
 }
 
-<h2>Index</h2>
+<h2>Credit Cards</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add SPF Card", "Create")
 </p>
 <table>
     <tr>
@@ -28,12 +28,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ExpirationYear)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreditCardUser.PersonId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Account.AccountId)
         </th>
         <th></th>
     </tr>
@@ -58,16 +52,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.ExpirationYear)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreditCardUser.PersonId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Account.AccountId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CreditCardId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CreditCardId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CreditCardId })
+        <td> 
+            
+            
+                
+            @if (item.CardType == 2){ @Html.ActionLink("Edit", "Edit", new { id=item.CreditCardId }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.CreditCardId }) }
+           
         </td>
     </tr>
 }

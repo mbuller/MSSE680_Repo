@@ -19,6 +19,34 @@ namespace Business
             creditCardSvc = (ICreditCardSvc)GetService("CreditCardSvcRepoImpl");
         }
 
+        public void CreateAccount(int id)
+        {
+            Account account = new Account(id);
+            accountSvc.CreateAccount(account);
+            /*
+            Account account = accountSvc.RetrieveAccount("AccountUser_PersonId", (int?)id);
+            if (account == null)
+            {
+                account = new Account(id);
+                accountSvc.CreateAccount(account);
+                Account account2 = accountSvc.RetrieveAccount("AccountUser_PersonId", (int?)id);
+                creditcard.Account_AccountId = account2.AccountId;
+                creditCardSvc.CreateCreditCard(creditcard);
+                account2.CreditCard_CreditCardId = creditcard.CreditCardId;
+                accountSvc.ModifyAccount(account2);
+            }
+            else
+            {
+                creditcard.Account_AccountId = account.AccountId;
+
+
+                creditCardSvc.CreateCreditCard(creditcard);
+                account.CreditCard_CreditCardId = creditcard.CreditCardId;
+                accountSvc.ModifyAccount(account);
+            }
+       */
+        }
+
         public void CreateAccount(Account account)
         {
        //     IAccountSvc accountSvc = (IAccountSvc)GetService("AccountSvcRepoImpl");

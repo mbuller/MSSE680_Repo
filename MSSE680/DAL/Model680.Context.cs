@@ -27,8 +27,8 @@ namespace DAL
     
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<CreditCard> CreditCards { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<CreditCard> CreditCards { get; set; }
     }
 }

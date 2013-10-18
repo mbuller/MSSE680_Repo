@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/16/2013 13:21:03
+-- Date Created: 10/17/2013 00:25:31
 -- Generated from EDMX file: C:\Users\mbuller\Documents\GitHub\MSSE680_Repo\MSSE680\DAL\Model680.edmx
 -- --------------------------------------------------
 
@@ -110,12 +110,12 @@ GO
 -- Creating table 'CreditCards'
 CREATE TABLE [dbo].[CreditCards] (
     [CreditCardId] int IDENTITY(1,1) NOT NULL,
-    [CreditCardNumber] AS ([CreditCardId] + CAST (9000000000000000 as BigInt)),
-    [CardType] tinyint  NULL,
-    [Limit] int  NULL,
-    [Balance] decimal(10,4)  NULL,
-    [ExpirationMonth] tinyint  NULL,
-    [ExpirationYear] tinyint  NULL,
+    [CreditCardNumber] bigint  NULL,
+    [CardType] tinyint  NOT NULL,
+    [Limit] int  NOT NULL,
+    [Balance] decimal(10,4)  NOT NULL,
+    [ExpirationMonth] tinyint  NOT NULL,
+    [ExpirationYear] tinyint  NOT NULL,
     [CreditCardUser_PersonId] int  NULL,
     [Account_AccountId] int  NULL
 );
@@ -173,20 +173,6 @@ ON [dbo].[Accounts]
     ([AccountUser_PersonId]);
 GO
 
--- Creating foreign key on [Address_AddressId] in table 'People'
-ALTER TABLE [dbo].[People]
-ADD CONSTRAINT [FK_dbo_People_dbo_Addresses_Address_AddressId]
-    FOREIGN KEY ([Address_AddressId])
-    REFERENCES [dbo].[Addresses]
-        ([AddressId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_dbo_People_dbo_Addresses_Address_AddressId'
-CREATE INDEX [IX_FK_dbo_People_dbo_Addresses_Address_AddressId]
-ON [dbo].[People]
-    ([Address_AddressId]);
-GO
-
 -- Creating foreign key on [Person_PersonId] in table 'Addresses'
 ALTER TABLE [dbo].[Addresses]
 ADD CONSTRAINT [FK_dbo_Addresses_dbo_People_Person_PersonId]
@@ -199,6 +185,20 @@ ADD CONSTRAINT [FK_dbo_Addresses_dbo_People_Person_PersonId]
 CREATE INDEX [IX_FK_dbo_Addresses_dbo_People_Person_PersonId]
 ON [dbo].[Addresses]
     ([Person_PersonId]);
+GO
+
+-- Creating foreign key on [Address_AddressId] in table 'People'
+ALTER TABLE [dbo].[People]
+ADD CONSTRAINT [FK_dbo_People_dbo_Addresses_Address_AddressId]
+    FOREIGN KEY ([Address_AddressId])
+    REFERENCES [dbo].[Addresses]
+        ([AddressId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_dbo_People_dbo_Addresses_Address_AddressId'
+CREATE INDEX [IX_FK_dbo_People_dbo_Addresses_Address_AddressId]
+ON [dbo].[People]
+    ([Address_AddressId]);
 GO
 
 -- Creating foreign key on [CreditCard_CreditCardId] in table 'Accounts'
